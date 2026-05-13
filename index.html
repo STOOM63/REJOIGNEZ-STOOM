@@ -3,74 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STOOM Clermont-Ferrand | Le jeu commence</title>
-  <meta name="description" content="Découvrez l'expérience interactive STOOM Clermont-Ferrand pour les étudiants en alternance." />
+  <title>STOOM Clermont-Ferrand | Le Jeu Commence</title>
+
+  <meta
+    name="description"
+    content="Découvrez l'expérience immersive STOOM Clermont-Ferrand dédiée aux étudiants recherchant une alternance dans le commerce et la relation client."
+  />
 
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     :root {
-      --black: #050506;
+      --bg: #050506;
       --white: #f4eee8;
       --muted: rgba(244, 238, 232, 0.72);
       --pink: #e73568;
       --pink-light: #ff6f9d;
       --border: rgba(231, 53, 104, 0.45);
-      --glass: rgba(0, 0, 0, 0.55);
-    }
-
-    * {
-      box-sizing: border-box;
     }
 
     html,
     body {
-      margin: 0;
+      width: 100%;
       min-height: 100%;
-      background: var(--black);
+      background: var(--bg);
       color: var(--white);
       font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: url("intro.png");
+    body {
+      min-height: 100vh;
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.96) 0%,
+          rgba(0, 0, 0, 0.78) 42%,
+          rgba(0, 0, 0, 0.38) 100%
+        ),
+        url("intro.png");
       background-size: cover;
       background-position: center;
-      opacity: 0.62;
-      z-index: -3;
-      transform: scale(1.02);
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at 25% 20%, rgba(231, 53, 104, 0.23), transparent 28%),
-        radial-gradient(circle at 78% 72%, rgba(231, 53, 104, 0.14), transparent 30%),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.82));
-      z-index: -2;
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      background-image: url("noir.png");
-      background-size: cover;
-      background-position: center;
-      opacity: 0.12;
-      pointer-events: none;
-      z-index: -1;
-      mix-blend-mode: screen;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
     .page {
-      min-height: 100svh;
+      min-height: 100vh;
+      padding: 34px 6vw;
       display: flex;
       flex-direction: column;
-      padding: 34px clamp(22px, 6vw, 82px);
     }
 
     header {
@@ -78,14 +64,13 @@
       justify-content: space-between;
       align-items: center;
       gap: 20px;
-      position: relative;
-      z-index: 5;
+      margin-bottom: 70px;
     }
 
     .logo {
-      font-size: clamp(26px, 4vw, 46px);
-      font-weight: 950;
-      letter-spacing: -1.5px;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -1px;
       line-height: 0.9;
     }
 
@@ -96,127 +81,125 @@
     .logo small {
       display: block;
       margin-top: 8px;
-      color: var(--muted);
       font-size: 10px;
       letter-spacing: 4px;
-      font-weight: 500;
+      color: rgba(244, 238, 232, 0.6);
+      font-weight: 400;
     }
 
     .badge {
       border: 1px solid var(--border);
-      background: var(--glass);
+      background: rgba(0, 0, 0, 0.45);
+      padding: 12px 18px;
       color: var(--white);
-      padding: 12px 16px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-size: 11px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 22px rgba(231, 53, 104, 0.14);
+      box-shadow: 0 0 20px rgba(231, 53, 104, 0.12);
     }
 
     main {
       flex: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      grid-template-columns: minmax(0, 1fr) 520px;
+      gap: 70px;
       align-items: center;
-      gap: clamp(28px, 6vw, 80px);
-      padding: 74px 0 40px;
     }
 
     .kicker {
       color: var(--pink-light);
-      text-transform: uppercase;
-      letter-spacing: 4px;
+      font-size: 13px;
       font-weight: 900;
-      font-size: clamp(12px, 1.4vw, 15px);
-      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      margin: 0;
-      text-transform: uppercase;
-      font-weight: 950;
+      font-size: clamp(62px, 10vw, 170px);
       line-height: 0.88;
-      letter-spacing: -3px;
-      font-size: clamp(66px, 12vw, 172px);
-      text-shadow: 0 18px 70px rgba(0, 0, 0, 0.9);
+      text-transform: uppercase;
+      letter-spacing: -4px;
+      text-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+      margin-bottom: 28px;
+      max-width: 900px;
     }
 
-    .pink {
+    h1 span {
       color: var(--pink);
     }
 
     .lead {
-      margin: 28px 0 0;
-      max-width: 650px;
+      max-width: 720px;
       color: var(--muted);
-      font-size: clamp(18px, 2vw, 24px);
-      line-height: 1.5;
+      font-size: 22px;
+      line-height: 1.6;
     }
 
     .symbols {
-      display: flex;
-      gap: 16px;
-      margin: 34px 0;
+      margin-top: 34px;
       color: var(--pink-light);
       font-size: 34px;
-      letter-spacing: 8px;
-      text-shadow: 0 0 22px rgba(231, 53, 104, 0.75);
+      letter-spacing: 12px;
+      text-shadow: 0 0 25px rgba(231, 53, 104, 0.7);
     }
 
     .actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 16px;
-      align-items: center;
-      margin-top: 32px;
+      flex-wrap: wrap;
+      margin-top: 40px;
     }
 
     .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
       min-height: 56px;
       padding: 0 30px;
-      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
+      color: white;
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-weight: 900;
       font-size: 13px;
+      font-weight: 900;
       border-radius: 4px;
       border: 1px solid var(--border);
-      background: linear-gradient(135deg, var(--pink), #a90f3b);
-      box-shadow: 0 0 35px rgba(231, 53, 104, 0.42);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: 0.2s ease;
     }
 
-    .btn:hover {
+    .btn.primary {
+      background: linear-gradient(135deg, #e73568, #a90f3b);
+      box-shadow: 0 0 35px rgba(231, 53, 104, 0.4);
+    }
+
+    .btn.primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 0 48px rgba(231, 53, 104, 0.66);
+      box-shadow: 0 0 50px rgba(231, 53, 104, 0.65);
     }
 
-    .ghost {
+    .btn.secondary {
       background: rgba(0, 0, 0, 0.45);
-      box-shadow: none;
     }
 
     .panel {
+      width: 100%;
+      max-width: 520px;
+      justify-self: end;
       border: 1px solid rgba(231, 53, 104, 0.35);
-      background: rgba(0, 0, 0, 0.48);
-      backdrop-filter: blur(12px);
-      padding: clamp(22px, 3vw, 34px);
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+      background: rgba(0, 0, 0, 0.56);
+      backdrop-filter: blur(10px);
+      padding: 34px;
+      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55);
     }
 
     .panel-title {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      align-items: center;
       padding-bottom: 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .panel-title strong {
@@ -227,89 +210,108 @@
 
     .panel-title span {
       color: var(--pink-light);
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       font-size: 20px;
     }
 
-    .mission {
+    .steps {
       display: grid;
-      gap: 14px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      gap: 12px;
     }
 
-    .mission li {
+    .step {
       display: grid;
-      grid-template-columns: 40px 1fr;
+      grid-template-columns: 42px 1fr;
       gap: 14px;
       align-items: center;
-      color: var(--muted);
-      line-height: 1.35;
-      padding: 13px 0;
+      padding: 16px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .mission li:last-child {
+    .step:last-child {
       border-bottom: none;
     }
 
     .number {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       display: grid;
       place-items: center;
-      color: var(--pink-light);
       border: 1px solid var(--border);
+      color: var(--pink-light);
       font-weight: 900;
+      font-size: 14px;
     }
 
-    .warning {
+    .step span {
+      color: rgba(244, 238, 232, 0.74);
+      line-height: 1.4;
+      font-size: 15px;
+    }
+
+    .duration {
       margin-top: 24px;
-      color: var(--white);
-      font-size: 13px;
-      letter-spacing: 1.5px;
+      color: rgba(244, 238, 232, 0.55);
+      font-size: 12px;
       text-transform: uppercase;
-      opacity: 0.82;
+      letter-spacing: 2px;
     }
 
     footer {
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      color: rgba(244, 238, 232, 0.52);
+      margin-top: 60px;
+      color: rgba(244, 238, 232, 0.45);
       font-size: 12px;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      padding-bottom: 10px;
-      position: relative;
-      z-index: 5;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1200px) {
+      main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .panel {
+        max-width: 100%;
+        justify-self: stretch;
+      }
+
+      h1 {
+        font-size: clamp(62px, 14vw, 120px);
+      }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        background-attachment: scroll;
+      }
+
       .page {
         padding: 24px 20px;
       }
 
       header {
-        align-items: flex-start;
+        margin-bottom: 50px;
       }
 
       .badge {
         display: none;
       }
 
-      main {
-        grid-template-columns: 1fr;
-        padding-top: 56px;
-      }
-
       h1 {
+        font-size: clamp(54px, 18vw, 90px);
         letter-spacing: -2px;
       }
 
+      .lead {
+        font-size: 18px;
+      }
+
       .panel {
-        margin-top: 10px;
+        padding: 24px;
       }
 
       footer {
@@ -321,28 +323,43 @@
 </head>
 
 <body>
-  <div class="noise"></div>
-
   <div class="page">
     <header>
-      <div class="logo">ST<span>OO</span>M<small>CLERMONT-FERRAND</small></div>
-      <div class="badge">Alternance · Commerce · Conseil</div>
+      <div class="logo">
+        ST<span>OO</span>M
+        <small>CLERMONT-FERRAND</small>
+      </div>
+
+      <div class="badge">
+        Alternance · Commerce · Conseil
+      </div>
     </header>
 
     <main>
       <section>
         <div class="kicker">Accès candidat</div>
-        <h1>Le jeu <span class="pink">commence.</span></h1>
+
+        <h1>
+          LE JEU <span>COMMENCE.</span>
+        </h1>
+
         <p class="lead">
-          Vous cherchez une alternance ? Nous cherchons une personnalité.
-          Entrez dans l’expérience STOOM et découvrez une formation terrain, humaine et professionnelle.
+          Vous cherchez une alternance ?
+          Nous cherchons une personnalité.
+          Entrez dans l’expérience STOOM et découvrez une formation terrain,
+          humaine et professionnelle.
         </p>
 
-        <div class="symbols" aria-hidden="true">○ △ □</div>
+        <div class="symbols">○ △ □</div>
 
         <div class="actions">
-          <a class="btn" href="qui-sommes-nous.html">Entrer dans le jeu</a>
-          <a class="btn ghost" href="contact.html">Postuler directement</a>
+          <a class="btn primary" href="qui-sommes-nous.html">
+            Entrer dans le jeu
+          </a>
+
+          <a class="btn secondary" href="contact.html">
+            Postuler directement
+          </a>
         </div>
       </section>
 
@@ -352,15 +369,36 @@
           <span>○△□</span>
         </div>
 
-        <ul class="mission">
-          <li><span class="number">01</span><span>Découvrir STOOM Clermont-Ferrand</span></li>
-          <li><span class="number">02</span><span>Comprendre ce que vous allez apprendre</span></li>
-          <li><span class="number">03</span><span>Vérifier si votre profil correspond</span></li>
-          <li><span class="number">04</span><span>Découvrir pourquoi rejoindre l’équipe</span></li>
-          <li><span class="number">05</span><span>Passer à l’épreuve finale : nous contacter</span></li>
-        </ul>
+        <div class="steps">
+          <div class="step">
+            <div class="number">01</div>
+            <span>Découvrir STOOM Clermont-Ferrand</span>
+          </div>
 
-        <div class="warning">Durée estimée : moins de 3 minutes</div>
+          <div class="step">
+            <div class="number">02</div>
+            <span>Comprendre ce que vous allez apprendre</span>
+          </div>
+
+          <div class="step">
+            <div class="number">03</div>
+            <span>Vérifier si votre profil correspond</span>
+          </div>
+
+          <div class="step">
+            <div class="number">04</div>
+            <span>Découvrir pourquoi rejoindre l’équipe</span>
+          </div>
+
+          <div class="step">
+            <div class="number">05</div>
+            <span>Passer à l’épreuve finale : nous contacter</span>
+          </div>
+        </div>
+
+        <div class="duration">
+          Durée estimée : moins de 3 minutes
+        </div>
       </aside>
     </main>
 
