@@ -1,1 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STOOM Clermont-Ferrand | Alternance</title>
+  <meta name="description" content="Découvrez l'offre d'alternance STOOM Clermont-Ferrand : commerce, conseil client et expérience terrain." />
+  <style>
+    :root {
+      --bg: #050507;
+      --pink: #e73568;
+      --pink-soft: #ff5d8f;
+      --white: #f5f0ea;
+      --muted: rgba(245, 240, 234, 0.72);
+      --line: rgba(231, 53, 104, 0.45);
+      --card: rgba(8, 8, 12, 0.72);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("noir.png");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 25% 20%, rgba(231,53,104,.18), transparent 32%), linear-gradient(90deg, rgba(0,0,0,.82), rgba(0,0,0,.38));
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 7vw;
+      z-index: 20;
+      background: linear-gradient(to bottom, rgba(0,0,0,.78), rgba(0,0,0,0));
+      backdrop-filter: blur(4px);
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: -1px;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .brand span { color: var(--pink); }
+
+    .brand small {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      opacity: .78;
+      transition: .2s;
+    }
+
+    nav a:hover { color: var(--pink-soft); opacity: 1; }
+
+    .section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 110px 7vw 80px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: .54;
+      transform: scale(1.02);
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.92), rgba(0,0,0,.62) 46%, rgba(0,0,0,.28));
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .center-content {
+      margin: 0 auto;
+      text-align: center;
+      max-width: 980px;
+    }
+
+    .kicker {
+      color: var(--pink-soft);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    h1, h2 {
+      margin: 0;
+      text-transform: uppercase;
+      line-height: .92;
+      font-weight: 950;
+      letter-spacing: -1px;
+      text-shadow: 0 8px 40px rgba(0,0,0,.8);
+    }
+
+    h1 { font-size: clamp(58px, 11vw, 150px); }
+    h2 { font-size: clamp(42px, 7vw, 88px); }
+
+    .pink { color: var(--pink); }
+
+    p {
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.55;
+      max-width: 620px;
+    }
+
+    .symbols {
+      display: flex;
+      gap: 15px;
+      color: var(--pink);
+      font-size: 28px;
+      margin: 28px 0;
+      letter-spacing: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, var(--pink), #bd1748);
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+      border-radius: 4px;
+      box-shadow: 0 0 26px rgba(231, 53, 104, .45);
+      transition: .2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 0 38px rgba(231, 53, 104, .65); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      width: min(100%, 980px);
+      margin-top: 40px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      min-height: 155px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      transition: .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--pink-soft);
+      box-shadow: 0 0 30px rgba(231, 53, 104, .18);
+    }
+
+    .icon {
+      font-size: 34px;
+      color: var(--pink-soft);
+      margin-bottom: 12px;
+    }
+
+    .card strong {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .card span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .quiz {
+      max-width: 760px;
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.45);
+      padding: 26px;
+      backdrop-filter: blur(6px);
+    }
+
+    .question {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 12px;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+    }
+
+    .choice {
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.35);
+      color: var(--white);
+      padding: 9px 18px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 3px;
+    }
+
+    .choice.active {
+      background: var(--pink);
+      box-shadow: 0 0 18px rgba(231,53,104,.45);
+    }
+
+    .result {
+      margin-top: 22px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      text-align: center;
+      color: var(--white);
+      display: none;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 38px;
+      width: min(100%, 1080px);
+    }
+
+    .why {
+      background: rgba(0,0,0,.58);
+      border: 1px solid rgba(255,255,255,.12);
+      min-height: 190px;
+      padding: 24px 18px;
+      text-align: center;
+    }
+
+    .why strong {
+      display: block;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      font-size: 17px;
+    }
+
+    .why span { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+    .contact-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+      width: min(100%, 740px);
+    }
+
+    .contact-actions a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 18px 10px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.54);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+    }
+
+    .footer-note {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .progress {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.55);
+      background: rgba(0,0,0,.45);
+    }
+
+    .dot.active { background: var(--pink); border-color: var(--pink); box-shadow: 0 0 18px var(--pink); }
+
+    @media (max-width: 820px) {
+      .topbar { height: 68px; padding: 14px 20px; }
+      nav { display: none; }
+      .brand { font-size: 24px; }
+      .section { padding: 95px 24px 60px; min-height: 100svh; }
+      .section::before { background: linear-gradient(180deg, rgba(0,0,0,.82), rgba(0,0,0,.62)); }
+      .content, .center-content { max-width: 100%; }
+      p { font-size: 16px; }
+      .grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .contact-actions { grid-template-columns: 1fr 1fr; }
+      .question { grid-template-columns: 1fr; }
+      .progress { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">ST<span>OO</span>M<small>CLERMONT-FERRAND</small></div>
+    <nav>
+      <a href="#jeu">Le jeu</a>
+      <a href="#epreuves">Les épreuves</a>
+      <a href="#equipe">L'équipe</a>
+      <a href="#postuler">Postuler</a>
+    </nav>
+  </header>
+
+  <div class="progress" aria-hidden="true">
+    <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+
+  <main>
+    <section class="section" id="jeu">
+      <div class="bg" style="background-image:url('intro.png')"></div>
+      <div class="content">
+        <div class="kicker">Épreuve 00</div>
+        <h1>Le jeu <span class="pink">commence.</span></h1>
+        <p>Votre alternance se cache peut-être ici. Découvrez STOOM Clermont-Ferrand à travers un parcours rapide, ludique et immersif.</p>
+        <div class="symbols">○ △ □</div>
+        <a class="btn" href="#qui">Entrer dans le jeu →</a>
+      </div>
+    </section>
+
+    <section class="section" id="qui">
+      <div class="bg" style="background-image:url('magasin.png')"></div>
+      <div class="content">
+        <div class="kicker">Épreuve 01</div>
+        <h2>Qui sommes-nous ?</h2>
+        <p>STOOM Clermont-Ferrand est une boutique spécialisée dans la cigarette électronique, le conseil client et l’accompagnement personnalisé.</p>
+        <p>Notre objectif : former des alternants sérieux, curieux et motivés dans un environnement moderne, humain et professionnel.</p>
+        <a class="btn" href="#epreuves">Épreuve suivante →</a>
+      </div>
+    </section>
+
+    <section class="section" id="epreuves">
+      <div class="bg" style="background-image:url('mur.png')"></div>
+      <div class="center-content">
+        <div class="kicker">Épreuve 02</div>
+        <h2>Vos compétences</h2>
+        <div class="symbols" style="justify-content:center">○ △ □</div>
+        <div class="grid">
+          <div class="card"><div class="icon">◎</div><strong>Vente & conseil</strong><span>Comprendre le besoin client et proposer une solution adaptée.</span></div>
+          <div class="card"><div class="icon">▣</div><strong>Gestion boutique</strong><span>Participer au réassort, à la mise en rayon et au suivi magasin.</span></div>
+          <div class="card"><div class="icon">◌</div><strong>Relation client</strong><span>Développer l’écoute, la pédagogie et la fidélisation.</span></div>
+          <div class="card"><div class="icon">△</div><strong>Produits</strong><span>Découvrir les matériels, e-liquides et usages clients.</span></div>
+          <div class="card"><div class="icon">◇</div><strong>Communication</strong><span>Participer à l’image boutique et aux actions commerciales.</span></div>
+          <div class="card"><div class="icon">▰</div><strong>Terrain</strong><span>Apprendre au contact réel des clients, jour après jour.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="profil">
+      <div class="bg" style="background-image:url('bureau.png')"></div>
+      <div class="content">
+        <div class="kicker">Épreuve 03</div>
+        <h2>Êtes-vous le bon profil ?</h2>
+        <p>Pas besoin d’être expert en cigarette électronique. Ce qui compte : l’envie d’apprendre, le sérieux et le contact humain.</p>
+        <div class="quiz">
+          <div class="question"><span>Vous aimez le contact client ?</span><button class="choice">Oui</button><button class="choice">Non</button></div>
+          <div class="question"><span>Vous êtes curieux d’apprendre ?</span><button class="choice">Oui</button><button class="choice">Non</button></div>
+          <div class="question"><span>Vous aimez travailler en équipe ?</span><button class="choice">Oui</button><button class="choice">Non</button></div>
+          <button class="btn" id="validate" style="margin-top:22px">Valider le profil</button>
+          <div class="result" id="result">Vous semblez prêt pour la suite.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="equipe">
+      <div class="bg" style="background-image:url('soldats.png')"></div>
+      <div class="center-content">
+        <div class="kicker">Épreuve 04</div>
+        <h2>Pourquoi rejoindre STOOM ?</h2>
+        <div class="why-grid">
+          <div class="why"><strong>Une équipe humaine</strong><span>On avance ensemble, dans la confiance et l’entraide.</span></div>
+          <div class="why"><strong>Vraie formation terrain</strong><span>Vous apprenez un métier, pas seulement une théorie.</span></div>
+          <div class="why"><strong>Autonomie progressive</strong><span>On vous accompagne pour monter en compétence.</span></div>
+          <div class="why"><strong>Ambiance dynamique</strong><span>Un commerce moderne, vivant et orienté client.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="postuler">
+      <div class="bg" style="background-image:url('arche.png')"></div>
+      <div class="center-content">
+        <div class="kicker">Épreuve finale</div>
+        <h2>Scan validé</h2>
+        <p style="margin-left:auto;margin-right:auto">Vous avez terminé le parcours. Il est temps de nous rencontrer.</p>
+        <div class="contact-actions">
+          <a href="tel:0660852190">Appeler</a>
+          <a href="mailto:contact.boutique.clermont@gmail.com?subject=Candidature%20alternance%20STOOM">Email</a>
+          <a href="https://www.instagram.com/stoomclermontferrand" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=109%20avenue%20%C3%89douard%20Michelin%2063100%20Clermont-Ferrand" target="_blank" rel="noopener">Adresse</a>
+        </div>
+        <div class="footer-note">STOOM Clermont-Ferrand · 109 avenue Édouard Michelin · 63100 Clermont-Ferrand</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const dots = document.querySelectorAll('.dot');
+    const sections = document.querySelectorAll('.section');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = [...sections].indexOf(entry.target);
+          dots.forEach(dot => dot.classList.remove('active'));
+          if (dots[index]) dots[index].classList.add('active');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    sections.forEach(section => observer.observe(section));
+
+    document.querySelectorAll('.question').forEach(question => {
+      const choices = question.querySelectorAll('.choice');
+      choices.forEach(choice => {
+        choice.addEventListener('click', () => {
+          choices.forEach(c => c.classList.remove('active'));
+          choice.classList.add('active');
+        });
+      });
+    });
+
+    document.getElementById('validate').addEventListener('click', () => {
+      document.getElementById('result').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
 
