@@ -1,198 +1,165 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STOOM | Épreuve 01</title>
-  <meta name="description" content="Épreuve 01 : découvrez STOOM Clermont-Ferrand, boutique spécialisée dans le conseil client et l’accompagnement personnalisé." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STOOM | Qui sommes-nous ?</title>
 
   <style>
-    :root {
-      --black: #050506;
-      --white: #f4eee8;
-      --muted: rgba(244, 238, 232, 0.72);
-      --pink: #e73568;
-      --pink-light: #ff6f9d;
-      --border: rgba(231, 53, 104, 0.45);
-      --glass: rgba(0, 0, 0, 0.58);
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
       min-height: 100%;
-      background: var(--black);
-      color: var(--white);
       font-family: Arial, Helvetica, sans-serif;
-      overflow-x: hidden;
+      background: #050506;
+      color: #f4eee8;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: url("magasin.png");
+    body {
+      min-height: 100vh;
+      background-image:
+        linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 42%, rgba(0,0,0,0.35) 100%),
+        url("magasin.png");
       background-size: cover;
       background-position: center;
-      opacity: 0.66;
-      z-index: -3;
-      transform: scale(1.02);
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at 72% 22%, rgba(231, 53, 104, 0.20), transparent 32%),
-        linear-gradient(90deg, rgba(0,0,0,0.94), rgba(0,0,0,0.68), rgba(0,0,0,0.35));
-      z-index: -2;
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      background-image: url("noir.png");
-      background-size: cover;
-      background-position: center;
-      opacity: 0.10;
-      pointer-events: none;
-      z-index: -1;
-      mix-blend-mode: screen;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
     .page {
-      min-height: 100svh;
+      min-height: 100vh;
+      padding: 34px 6vw;
       display: flex;
       flex-direction: column;
-      padding: 34px clamp(22px, 6vw, 82px);
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      position: relative;
-      z-index: 5;
+      margin-bottom: 80px;
     }
 
     .logo {
-      font-size: clamp(26px, 4vw, 46px);
-      font-weight: 950;
-      letter-spacing: -1.5px;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -1px;
       line-height: 0.9;
     }
 
-    .logo span { color: var(--pink); }
+    .logo span {
+      color: #e73568;
+    }
 
     .logo small {
       display: block;
       margin-top: 8px;
-      color: var(--muted);
       font-size: 10px;
       letter-spacing: 4px;
-      font-weight: 500;
+      color: rgba(244,238,232,0.65);
+      font-weight: 400;
     }
 
-    .step {
-      border: 1px solid var(--border);
-      background: var(--glass);
-      color: var(--white);
+    .badge {
+      border: 1px solid rgba(231,53,104,0.5);
       padding: 12px 16px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      color: #f4eee8;
       font-size: 11px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 22px rgba(231, 53, 104, 0.14);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.45);
     }
 
     main {
       flex: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      grid-template-columns: 1fr 0.9fr;
+      gap: 70px;
       align-items: center;
-      gap: clamp(28px, 6vw, 82px);
-      padding: 74px 0 40px;
     }
 
     .kicker {
-      color: var(--pink-light);
-      text-transform: uppercase;
-      letter-spacing: 4px;
+      color: #ff6f9d;
+      font-size: 13px;
       font-weight: 900;
-      font-size: clamp(12px, 1.4vw, 15px);
-      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      margin: 0;
-      text-transform: uppercase;
-      font-weight: 950;
+      font-size: clamp(58px, 8vw, 118px);
       line-height: 0.9;
-      letter-spacing: -3px;
-      font-size: clamp(54px, 9vw, 128px);
-      text-shadow: 0 18px 70px rgba(0, 0, 0, 0.9);
-    }
-
-    .pink { color: var(--pink); }
-
-    .lead {
-      margin: 28px 0 0;
-      max-width: 660px;
-      color: var(--muted);
-      font-size: clamp(18px, 2vw, 23px);
-      line-height: 1.5;
-    }
-
-    .values {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 34px;
-      max-width: 650px;
-    }
-
-    .value {
-      border: 1px solid rgba(231, 53, 104, 0.32);
-      background: rgba(0, 0, 0, 0.48);
-      padding: 18px;
-      backdrop-filter: blur(8px);
-    }
-
-    .value strong {
-      display: block;
-      color: var(--white);
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 14px;
-      margin-bottom: 8px;
+      letter-spacing: -3px;
+      margin-bottom: 28px;
+      text-shadow: 0 18px 60px rgba(0,0,0,0.9);
     }
 
-    .value span {
+    h1 span {
+      color: #e73568;
+    }
+
+    p {
+      max-width: 660px;
+      color: rgba(244,238,232,0.78);
+      font-size: 20px;
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      max-width: 650px;
+      margin-top: 34px;
+    }
+
+    .card {
+      border: 1px solid rgba(231,53,104,0.42);
+      background: rgba(0,0,0,0.58);
+      padding: 20px;
+      min-height: 120px;
+      backdrop-filter: blur(6px);
+    }
+
+    .card strong {
       display: block;
-      color: var(--muted);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
       font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .card span {
+      color: rgba(244,238,232,0.72);
+      font-size: 15px;
       line-height: 1.45;
     }
 
     .panel {
-      border: 1px solid rgba(231, 53, 104, 0.35);
-      background: rgba(0, 0, 0, 0.54);
-      backdrop-filter: blur(12px);
-      padding: clamp(22px, 3vw, 34px);
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(231,53,104,0.5);
+      background: rgba(0,0,0,0.66);
+      padding: 34px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.65);
     }
 
     .panel-title {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      align-items: center;
       padding-bottom: 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
     }
 
     .panel-title strong {
@@ -202,74 +169,66 @@
     }
 
     .panel-title span {
-      color: var(--pink-light);
-      letter-spacing: 4px;
+      color: #ff6f9d;
       font-size: 20px;
+      letter-spacing: 5px;
     }
 
     .info {
-      margin: 0;
-      padding: 0;
       list-style: none;
-      display: grid;
-      gap: 16px;
     }
 
     .info li {
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.09);
     }
 
-    .info li:last-child { border-bottom: none; padding-bottom: 0; }
+    .info li:last-child {
+      border-bottom: none;
+    }
 
     .info strong {
       display: block;
-      color: var(--pink-light);
+      color: #ff6f9d;
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 12px;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
     }
 
     .info span {
-      color: var(--muted);
+      color: rgba(244,238,232,0.75);
       line-height: 1.45;
       font-size: 15px;
     }
 
     .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
       margin-top: 34px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .btn {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       min-height: 54px;
       padding: 0 28px;
-      color: var(--white);
+      color: #fff;
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-weight: 900;
       font-size: 13px;
+      font-weight: 900;
+      border: 1px solid rgba(231,53,104,0.5);
+      background: linear-gradient(135deg, #e73568, #a90f3b);
+      box-shadow: 0 0 35px rgba(231,53,104,0.36);
       border-radius: 4px;
-      border: 1px solid var(--border);
-      background: linear-gradient(135deg, var(--pink), #a90f3b);
-      box-shadow: 0 0 35px rgba(231, 53, 104, 0.38);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 48px rgba(231, 53, 104, 0.60);
-    }
-
-    .ghost {
-      background: rgba(0, 0, 0, 0.45);
+    .btn.secondary {
+      background: rgba(0,0,0,0.5);
       box-shadow: none;
     }
 
@@ -277,58 +236,108 @@
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      color: rgba(244, 238, 232, 0.52);
+      margin-top: 60px;
+      color: rgba(244,238,232,0.48);
       font-size: 12px;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      padding-bottom: 10px;
-      position: relative;
-      z-index: 5;
     }
 
     @media (max-width: 900px) {
-      .page { padding: 24px 20px; }
-      .step { display: none; }
-      main { grid-template-columns: 1fr; padding-top: 56px; }
-      h1 { letter-spacing: -2px; }
-      .values { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 8px; }
+      body {
+        background-position: center;
+        background-attachment: scroll;
+      }
+
+      .page {
+        padding: 24px 20px;
+      }
+
+      header {
+        margin-bottom: 54px;
+      }
+
+      .badge {
+        display: none;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      p {
+        font-size: 17px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        padding: 24px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="noise"></div>
-
   <div class="page">
     <header>
       <div class="logo">ST<span>OO</span>M<small>CLERMONT-FERRAND</small></div>
-      <div class="step">Épreuve 01 · Qui sommes-nous ?</div>
+      <div class="badge">Épreuve 01 · Qui sommes-nous ?</div>
     </header>
 
     <main>
       <section>
         <div class="kicker">Épreuve 01</div>
-        <h1>Qui sommes-<span class="pink">nous ?</span></h1>
-        <p class="lead">
+
+        <h1>Qui sommes-<span>nous ?</span></h1>
+
+        <p>
           STOOM Clermont-Ferrand est une boutique spécialisée dans la cigarette électronique,
           le conseil client et l’accompagnement personnalisé.
         </p>
-        <p class="lead">
-          Ici, l’objectif n’est pas seulement de vendre : c’est d’écouter, comprendre, expliquer
-          et accompagner chaque client avec sérieux.
+
+        <p>
+          Ici, l’objectif n’est pas seulement de vendre : c’est d’écouter, comprendre,
+          expliquer et accompagner chaque client avec sérieux.
         </p>
 
-        <div class="values">
-          <div class="value"><strong>Conseil</strong><span>Une approche personnalisée selon chaque client.</span></div>
-          <div class="value"><strong>Formation</strong><span>Une vraie montée en compétence sur le terrain.</span></div>
-          <div class="value"><strong>Humain</strong><span>Une relation client basée sur l’écoute et la confiance.</span></div>
-          <div class="value"><strong>Expérience</strong><span>Un commerce moderne avec des missions concrètes.</span></div>
+        <div class="cards">
+          <div class="card">
+            <strong>Conseil</strong>
+            <span>Une approche personnalisée selon chaque client.</span>
+          </div>
+
+          <div class="card">
+            <strong>Formation</strong>
+            <span>Une vraie montée en compétence sur le terrain.</span>
+          </div>
+
+          <div class="card">
+            <strong>Humain</strong>
+            <span>Une relation client basée sur l’écoute et la confiance.</span>
+          </div>
+
+          <div class="card">
+            <strong>Expérience</strong>
+            <span>Un commerce moderne avec des missions concrètes.</span>
+          </div>
         </div>
 
         <div class="actions">
           <a class="btn" href="competences.html">Épreuve suivante →</a>
-          <a class="btn ghost" href="index.html">Retour au hub</a>
+          <a class="btn secondary" href="index.html">Retour au hub</a>
         </div>
       </section>
 
@@ -339,10 +348,25 @@
         </div>
 
         <ul class="info">
-          <li><strong>Entreprise</strong><span>STOOM Clermont-Ferrand</span></li>
-          <li><strong>Adresse</strong><span>109 avenue Édouard Michelin, 63100 Clermont-Ferrand</span></li>
-          <li><strong>Univers</strong><span>Commerce spécialisé, relation client, conseil et accompagnement.</span></li>
-          <li><strong>Mission alternant</strong><span>Apprendre le métier en situation réelle, au contact des clients et de l’équipe.</span></li>
+          <li>
+            <strong>Entreprise</strong>
+            <span>STOOM Clermont-Ferrand</span>
+          </li>
+
+          <li>
+            <strong>Adresse</strong>
+            <span>109 avenue Édouard Michelin, 63100 Clermont-Ferrand</span>
+          </li>
+
+          <li>
+            <strong>Univers</strong>
+            <span>Commerce spécialisé, relation client, conseil et accompagnement.</span>
+          </li>
+
+          <li>
+            <strong>Mission alternant</strong>
+            <span>Apprendre le métier en situation réelle, au contact des clients et de l’équipe.</span>
+          </li>
         </ul>
       </aside>
     </main>
