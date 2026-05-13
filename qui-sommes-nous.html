@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STOOM | Épreuve 01</title>
+  <meta name="description" content="Épreuve 01 : découvrez STOOM Clermont-Ferrand, boutique spécialisée dans le conseil client et l’accompagnement personnalisé." />
+
+  <style>
+    :root {
+      --black: #050506;
+      --white: #f4eee8;
+      --muted: rgba(244, 238, 232, 0.72);
+      --pink: #e73568;
+      --pink-light: #ff6f9d;
+      --border: rgba(231, 53, 104, 0.45);
+      --glass: rgba(0, 0, 0, 0.58);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--black);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("magasin.png");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.66;
+      z-index: -3;
+      transform: scale(1.02);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 72% 22%, rgba(231, 53, 104, 0.20), transparent 32%),
+        linear-gradient(90deg, rgba(0,0,0,0.94), rgba(0,0,0,0.68), rgba(0,0,0,0.35));
+      z-index: -2;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("noir.png");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+      mix-blend-mode: screen;
+    }
+
+    .page {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      padding: 34px clamp(22px, 6vw, 82px);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .logo {
+      font-size: clamp(26px, 4vw, 46px);
+      font-weight: 950;
+      letter-spacing: -1.5px;
+      line-height: 0.9;
+    }
+
+    .logo span { color: var(--pink); }
+
+    .logo small {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 4px;
+      font-weight: 500;
+    }
+
+    .step {
+      border: 1px solid var(--border);
+      background: var(--glass);
+      color: var(--white);
+      padding: 12px 16px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 22px rgba(231, 53, 104, 0.14);
+    }
+
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      align-items: center;
+      gap: clamp(28px, 6vw, 82px);
+      padding: 74px 0 40px;
+    }
+
+    .kicker {
+      color: var(--pink-light);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 900;
+      font-size: clamp(12px, 1.4vw, 15px);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: 950;
+      line-height: 0.9;
+      letter-spacing: -3px;
+      font-size: clamp(54px, 9vw, 128px);
+      text-shadow: 0 18px 70px rgba(0, 0, 0, 0.9);
+    }
+
+    .pink { color: var(--pink); }
+
+    .lead {
+      margin: 28px 0 0;
+      max-width: 660px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.5;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 34px;
+      max-width: 650px;
+    }
+
+    .value {
+      border: 1px solid rgba(231, 53, 104, 0.32);
+      background: rgba(0, 0, 0, 0.48);
+      padding: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .value strong {
+      display: block;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .value span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .panel {
+      border: 1px solid rgba(231, 53, 104, 0.35);
+      background: rgba(0, 0, 0, 0.54);
+      backdrop-filter: blur(12px);
+      padding: clamp(22px, 3vw, 34px);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .panel-title strong {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 14px;
+    }
+
+    .panel-title span {
+      color: var(--pink-light);
+      letter-spacing: 4px;
+      font-size: 20px;
+    }
+
+    .info {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+
+    .info li {
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .info li:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .info strong {
+      display: block;
+      color: var(--pink-light);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .info span {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+      padding: 0 28px;
+      color: var(--white);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 900;
+      font-size: 13px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--pink), #a90f3b);
+      box-shadow: 0 0 35px rgba(231, 53, 104, 0.38);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 48px rgba(231, 53, 104, 0.60);
+    }
+
+    .ghost {
+      background: rgba(0, 0, 0, 0.45);
+      box-shadow: none;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(244, 238, 232, 0.52);
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding-bottom: 10px;
+      position: relative;
+      z-index: 5;
+    }
+
+    @media (max-width: 900px) {
+      .page { padding: 24px 20px; }
+      .step { display: none; }
+      main { grid-template-columns: 1fr; padding-top: 56px; }
+      h1 { letter-spacing: -2px; }
+      .values { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <div class="page">
+    <header>
+      <div class="logo">ST<span>OO</span>M<small>CLERMONT-FERRAND</small></div>
+      <div class="step">Épreuve 01 · Qui sommes-nous ?</div>
+    </header>
+
+    <main>
+      <section>
+        <div class="kicker">Épreuve 01</div>
+        <h1>Qui sommes-<span class="pink">nous ?</span></h1>
+        <p class="lead">
+          STOOM Clermont-Ferrand est une boutique spécialisée dans la cigarette électronique,
+          le conseil client et l’accompagnement personnalisé.
+        </p>
+        <p class="lead">
+          Ici, l’objectif n’est pas seulement de vendre : c’est d’écouter, comprendre, expliquer
+          et accompagner chaque client avec sérieux.
+        </p>
+
+        <div class="values">
+          <div class="value"><strong>Conseil</strong><span>Une approche personnalisée selon chaque client.</span></div>
+          <div class="value"><strong>Formation</strong><span>Une vraie montée en compétence sur le terrain.</span></div>
+          <div class="value"><strong>Humain</strong><span>Une relation client basée sur l’écoute et la confiance.</span></div>
+          <div class="value"><strong>Expérience</strong><span>Un commerce moderne avec des missions concrètes.</span></div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="competences.html">Épreuve suivante →</a>
+          <a class="btn ghost" href="index.html">Retour au hub</a>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <div class="panel-title">
+          <strong>Carte d’identité</strong>
+          <span>○△□</span>
+        </div>
+
+        <ul class="info">
+          <li><strong>Entreprise</strong><span>STOOM Clermont-Ferrand</span></li>
+          <li><strong>Adresse</strong><span>109 avenue Édouard Michelin, 63100 Clermont-Ferrand</span></li>
+          <li><strong>Univers</strong><span>Commerce spécialisé, relation client, conseil et accompagnement.</span></li>
+          <li><strong>Mission alternant</strong><span>Apprendre le métier en situation réelle, au contact des clients et de l’équipe.</span></li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer>
+      <span>STOOM Clermont-Ferrand</span>
+      <span>Épreuve 01 / 05</span>
+    </footer>
+  </div>
+</body>
+</html>
