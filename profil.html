@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STOOM | Le profil recherché</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050506;
+      color: #f4eee8;
+    }
+
+    body {
+      min-height: 100vh;
+      background-image:
+        linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.76) 45%, rgba(0,0,0,0.40) 100%),
+        url("bureau.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 34px 6vw;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 70px;
+    }
+
+    .logo {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 0.9;
+    }
+
+    .logo span { color: #e73568; }
+
+    .logo small {
+      display: block;
+      margin-top: 8px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: rgba(244,238,232,0.65);
+      font-weight: 400;
+    }
+
+    .badge {
+      border: 1px solid rgba(231,53,104,0.5);
+      padding: 12px 16px;
+      color: #f4eee8;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.45);
+    }
+
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .kicker {
+      color: #ff6f9d;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(52px, 7.5vw, 112px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+      margin-bottom: 28px;
+      text-shadow: 0 18px 60px rgba(0,0,0,0.9);
+    }
+
+    h1 span { color: #e73568; }
+
+    p {
+      max-width: 620px;
+      color: rgba(244,238,232,0.78);
+      font-size: 20px;
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+
+    .symbols {
+      color: #ff6f9d;
+      font-size: 32px;
+      letter-spacing: 12px;
+      margin-top: 26px;
+      text-shadow: 0 0 25px rgba(231,53,104,0.75);
+    }
+
+    .panel {
+      border: 1px solid rgba(231,53,104,0.45);
+      background: rgba(0,0,0,0.66);
+      padding: 34px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .panel-title strong {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 14px;
+    }
+
+    .panel-title span {
+      color: #ff6f9d;
+      font-size: 20px;
+      letter-spacing: 5px;
+    }
+
+    .qualities {
+      display: grid;
+      gap: 16px;
+    }
+
+    .quality {
+      border: 1px solid rgba(231,53,104,0.26);
+      background: rgba(255,255,255,0.02);
+      padding: 20px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .quality:hover {
+      transform: translateY(-4px);
+      border-color: #ff6f9d;
+    }
+
+    .quality strong {
+      display: block;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .quality span {
+      color: rgba(244,238,232,0.72);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .actions {
+      margin-top: 34px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 28px;
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+      font-weight: 900;
+      border: 1px solid rgba(231,53,104,0.5);
+      background: linear-gradient(135deg, #e73568, #a90f3b);
+      box-shadow: 0 0 35px rgba(231,53,104,0.36);
+      border-radius: 4px;
+    }
+
+    .btn.secondary {
+      background: rgba(0,0,0,0.5);
+      box-shadow: none;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 60px;
+      color: rgba(244,238,232,0.48);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 950px) {
+      main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      body { background-attachment: scroll; }
+      .page { padding: 24px 20px; }
+      header { margin-bottom: 54px; }
+      .badge { display: none; }
+      h1 { letter-spacing: -2px; }
+      p { font-size: 17px; }
+      .panel { padding: 24px; }
+      footer { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">ST<span>OO</span>M<small>CLERMONT-FERRAND</small></div>
+      <div class="badge">Épreuve 03 · Le profil recherché</div>
+    </header>
+
+    <main>
+      <section>
+        <div class="kicker">Épreuve 03</div>
+
+        <h1>Le profil <span>recherché</span></h1>
+
+        <p>
+          Nous ne recherchons pas simplement un CV.
+          Nous recherchons une personnalité capable d’apprendre,
+          d’évoluer et de représenter STOOM avec sérieux.
+        </p>
+
+        <p>
+          Motivation, relationnel et curiosité feront toujours la différence.
+        </p>
+
+        <div class="symbols">○ △ □</div>
+
+        <div class="actions">
+          <a class="btn" href="pourquoi-stoom.html">Épreuve suivante →</a>
+          <a class="btn secondary" href="competences.html">Retour</a>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <div class="panel-title">
+          <strong>Qualités recherchées</strong>
+          <span>○△□</span>
+        </div>
+
+        <div class="qualities">
+          <div class="quality">
+            <strong>Relationnel</strong>
+            <span>Savoir écouter, échanger et créer une relation de confiance avec les clients.</span>
+          </div>
+
+          <div class="quality">
+            <strong>Curiosité</strong>
+            <span>Avoir envie d’apprendre un métier technique et de progresser rapidement.</span>
+          </div>
+
+          <div class="quality">
+            <strong>Sérieux</strong>
+            <span>Être impliqué, ponctuel et capable de travailler dans un cadre professionnel.</span>
+          </div>
+
+          <div class="quality">
+            <strong>Esprit d’équipe</strong>
+            <span>Participer à une ambiance saine et travailler avec les autres au quotidien.</span>
+          </div>
+
+          <div class="quality">
+            <strong>Motivation</strong>
+            <span>L’envie d’avancer et de se dépasser compte plus que l’expérience initiale.</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <span>STOOM Clermont-Ferrand</span>
+      <span>Épreuve 03 / 05</span>
+    </footer>
+  </div>
+</body>
+</html>
