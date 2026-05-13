@@ -100,9 +100,7 @@
 
     main {
       flex: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 520px;
-      gap: 70px;
+      display: flex;
       align-items: center;
     }
 
@@ -268,11 +266,37 @@
       text-transform: uppercase;
     }
 
-    @media (max-width: 1200px) {
-      main {
-        grid-template-columns: 1fr;
-        gap: 40px;
+    @media (max-width: 700px) {
+      body {
+        background-attachment: scroll;
       }
+
+      .page {
+        padding: 24px 20px;
+      }
+
+      header {
+        margin-bottom: 50px;
+      }
+
+      .badge {
+        display: none;
+      }
+
+      h1 {
+        font-size: clamp(54px, 18vw, 90px);
+        letter-spacing: -2px;
+      }
+
+      .lead {
+        font-size: 18px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
 
       .panel {
         max-width: 100%;
@@ -363,43 +387,7 @@
         </div>
       </section>
 
-      <aside class="panel">
-        <div class="panel-title">
-          <strong>Parcours</strong>
-          <span>○△□</span>
-        </div>
-
-        <div class="steps">
-          <div class="step">
-            <div class="number">01</div>
-            <span>Découvrir STOOM Clermont-Ferrand</span>
-          </div>
-
-          <div class="step">
-            <div class="number">02</div>
-            <span>Comprendre ce que vous allez apprendre</span>
-          </div>
-
-          <div class="step">
-            <div class="number">03</div>
-            <span>Vérifier si votre profil correspond</span>
-          </div>
-
-          <div class="step">
-            <div class="number">04</div>
-            <span>Découvrir pourquoi rejoindre l’équipe</span>
-          </div>
-
-          <div class="step">
-            <div class="number">05</div>
-            <span>Passer à l’épreuve finale : nous contacter</span>
-          </div>
-        </div>
-
-        <div class="duration">
-          Durée estimée : moins de 3 minutes
-        </div>
-      </aside>
+      
     </main>
 
     <footer>
