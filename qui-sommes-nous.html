@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STOOM | Qui sommes-nous ?</title>
+  <title>STOOM | Épreuve 01 - Analyse client</title>
 
   <style>
     * {
@@ -19,20 +19,35 @@
       font-family: Arial, Helvetica, sans-serif;
       background: #050506;
       color: #f4eee8;
+      overflow-x: hidden;
     }
 
     body {
       min-height: 100vh;
       background-image:
-        linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 42%, rgba(0,0,0,0.35) 100%),
-        url("magasin.png");
+        radial-gradient(circle at 70% 35%, rgba(231,53,104,0.18), transparent 28%),
+        linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.74) 44%, rgba(0,0,0,0.42) 100%),
+        url("couloir.png");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 72px),
+        linear-gradient(120deg, transparent 0%, rgba(231,53,104,0.08) 48%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .page {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
       padding: 34px 6vw;
       display: flex;
@@ -43,7 +58,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 80px;
+      margin-bottom: 58px;
     }
 
     .logo {
@@ -74,13 +89,14 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       background: rgba(0,0,0,0.45);
+      box-shadow: 0 0 22px rgba(231,53,104,0.16);
     }
 
     main {
       flex: 1;
       display: grid;
-      grid-template-columns: 1fr 0.9fr;
-      gap: 70px;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 54px;
       align-items: center;
     }
 
@@ -94,7 +110,7 @@
     }
 
     h1 {
-      font-size: clamp(58px, 8vw, 118px);
+      font-size: clamp(52px, 7.5vw, 108px);
       line-height: 0.9;
       text-transform: uppercase;
       letter-spacing: -3px;
@@ -107,103 +123,220 @@
     }
 
     p {
-      max-width: 660px;
+      max-width: 640px;
       color: rgba(244,238,232,0.78);
       font-size: 20px;
       line-height: 1.55;
       margin-bottom: 22px;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+    .intro-box {
+      border-left: 3px solid #e73568;
+      background: rgba(0,0,0,0.42);
+      padding: 18px 20px;
       max-width: 650px;
-      margin-top: 34px;
+      margin-top: 28px;
+      color: rgba(244,238,232,0.74);
+      line-height: 1.55;
+      box-shadow: 0 0 24px rgba(231,53,104,0.10);
     }
 
-    .card {
-      border: 1px solid rgba(231,53,104,0.42);
-      background: rgba(0,0,0,0.58);
-      padding: 20px;
-      min-height: 120px;
-      backdrop-filter: blur(6px);
+    .game {
+      position: relative;
+      border: 1px solid rgba(231,53,104,0.48);
+      background: rgba(0,0,0,0.68);
+      backdrop-filter: blur(9px);
+      box-shadow: 0 35px 90px rgba(0,0,0,0.68);
+      padding: 30px;
+      overflow: hidden;
     }
 
-    .card strong {
-      display: block;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 14px;
-      margin-bottom: 10px;
+    .game::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(231,53,104,0.22), transparent 38%);
+      pointer-events: none;
     }
 
-    .card span {
-      color: rgba(244,238,232,0.72);
-      font-size: 15px;
-      line-height: 1.45;
+    .game > * {
+      position: relative;
+      z-index: 1;
     }
 
-    .panel {
-      border: 1px solid rgba(231,53,104,0.5);
-      background: rgba(0,0,0,0.66);
-      padding: 34px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.65);
-    }
-
-    .panel-title {
+    .game-title {
       display: flex;
       justify-content: space-between;
+      gap: 18px;
       align-items: center;
       padding-bottom: 18px;
       margin-bottom: 22px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
     }
 
-    .panel-title strong {
+    .game-title strong {
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 14px;
     }
 
-    .panel-title span {
+    .game-title span {
       color: #ff6f9d;
-      font-size: 20px;
       letter-spacing: 5px;
+      text-shadow: 0 0 20px rgba(231,53,104,0.75);
     }
 
-    .info {
-      list-style: none;
+    .instruction {
+      color: rgba(244,238,232,0.78);
+      font-size: 17px;
+      line-height: 1.5;
+      margin-bottom: 24px;
     }
 
-    .info li {
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.09);
+    .clients {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    .info li:last-child {
-      border-bottom: none;
+    .client {
+      border: 1px solid rgba(231,53,104,0.32);
+      background: rgba(255,255,255,0.035);
+      min-height: 300px;
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .info strong {
+    .client:hover {
+      transform: translateY(-8px);
+      border-color: #ff6f9d;
+      background: rgba(231,53,104,0.09);
+      box-shadow: 0 0 36px rgba(231,53,104,0.25);
+    }
+
+    .client.selected.good {
+      border-color: #7CFFB2;
+      box-shadow: 0 0 38px rgba(124,255,178,0.25);
+    }
+
+    .client.selected.bad {
+      border-color: #ff3b3b;
+      box-shadow: 0 0 38px rgba(255,59,59,0.22);
+      opacity: 0.72;
+    }
+
+    .silhouette {
+      height: 130px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+    }
+
+    .silhouette::before {
+      content: "";
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #1e1e25, #050506);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 28px rgba(231,53,104,0.20);
+      position: absolute;
+      top: 8px;
+    }
+
+    .silhouette::after {
+      content: "";
+      width: 112px;
+      height: 76px;
+      border-radius: 44px 44px 8px 8px;
+      background: linear-gradient(180deg, #15151b, #050506);
+      border: 1px solid rgba(255,255,255,0.10);
+      position: absolute;
+      bottom: 0;
+      box-shadow: 0 0 34px rgba(231,53,104,0.16);
+    }
+
+    .scan-line {
+      height: 2px;
+      width: 100%;
+      background: #ff6f9d;
+      box-shadow: 0 0 18px #e73568;
+      position: absolute;
+      left: 0;
+      top: 18px;
+      animation: scan 2.4s linear infinite;
+      opacity: 0.75;
+    }
+
+    @keyframes scan {
+      0% { top: 12px; opacity: 0; }
+      12% { opacity: 0.9; }
+      88% { opacity: 0.9; }
+      100% { top: 116px; opacity: 0; }
+    }
+
+    .client-id {
+      color: #ff6f9d;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+
+    .quote {
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.35;
+      min-height: 74px;
+      margin-bottom: 16px;
+    }
+
+    .hint {
+      color: rgba(244,238,232,0.56);
+      font-size: 13px;
+      line-height: 1.45;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 14px;
+    }
+
+    .result {
+      display: none;
+      border: 1px solid rgba(231,53,104,0.48);
+      background: rgba(0,0,0,0.58);
+      padding: 22px;
+      margin-top: 8px;
+      animation: reveal 0.35s ease forwards;
+    }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result strong {
       display: block;
       color: #ff6f9d;
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-size: 12px;
-      margin-bottom: 8px;
+      font-size: 15px;
+      margin-bottom: 10px;
     }
 
-    .info span {
-      color: rgba(244,238,232,0.75);
-      line-height: 1.45;
-      font-size: 15px;
+    .result span {
+      display: block;
+      color: rgba(244,238,232,0.78);
+      line-height: 1.5;
     }
 
     .actions {
-      margin-top: 34px;
+      margin-top: 28px;
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
@@ -232,18 +365,31 @@
       box-shadow: none;
     }
 
+    .btn.locked {
+      opacity: 0.45;
+      pointer-events: none;
+      filter: grayscale(0.7);
+    }
+
     footer {
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      margin-top: 60px;
+      margin-top: 50px;
       color: rgba(244,238,232,0.48);
       font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1050px) {
+      main {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+    }
+
+    @media (max-width: 760px) {
       body {
         background-position: center;
         background-attachment: scroll;
@@ -261,12 +407,8 @@
         display: none;
       }
 
-      main {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-
       h1 {
+        font-size: clamp(52px, 17vw, 88px);
         letter-spacing: -2px;
       }
 
@@ -274,12 +416,24 @@
         font-size: 17px;
       }
 
-      .cards {
+      .game {
+        padding: 22px;
+      }
+
+      .clients {
         grid-template-columns: 1fr;
       }
 
-      .panel {
-        padding: 24px;
+      .client {
+        min-height: 240px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
       }
 
       footer {
@@ -294,81 +448,81 @@
   <div class="page">
     <header>
       <div class="logo">ST<span>OO</span>M<small>CLERMONT-FERRAND</small></div>
-      <div class="badge">Épreuve 01 · Qui sommes-nous ?</div>
+      <div class="badge">Épreuve 01 · Analyse client</div>
     </header>
 
     <main>
       <section>
         <div class="kicker">Épreuve 01</div>
 
-        <h1>Qui sommes-<span>nous ?</span></h1>
+        <h1>Analyse <span>client</span></h1>
 
         <p>
-          STOOM Clermont-Ferrand est une boutique spécialisée dans la cigarette électronique,
-          le conseil client et l’accompagnement personnalisé.
+          Chez STOOM, tout commence par l’écoute. Avant de proposer un produit,
+          il faut comprendre la personne, son besoin et sa situation.
         </p>
 
         <p>
-          Ici, l’objectif n’est pas seulement de vendre : c’est d’écouter, comprendre,
-          expliquer et accompagner chaque client avec sérieux.
+          Votre mission : identifier le client qui a le plus besoin d’un accompagnement personnalisé.
         </p>
 
-        <div class="cards">
-          <div class="card">
-            <strong>Conseil</strong>
-            <span>Une approche personnalisée selon chaque client.</span>
-          </div>
-
-          <div class="card">
-            <strong>Formation</strong>
-            <span>Une vraie montée en compétence sur le terrain.</span>
-          </div>
-
-          <div class="card">
-            <strong>Humain</strong>
-            <span>Une relation client basée sur l’écoute et la confiance.</span>
-          </div>
-
-          <div class="card">
-            <strong>Expérience</strong>
-            <span>Un commerce moderne avec des missions concrètes.</span>
-          </div>
+        <div class="intro-box">
+          Observez les profils. Choisissez avec logique, empathie et sens du conseil.
         </div>
 
         <div class="actions">
-          <a class="btn" href="competences.html">Épreuve suivante →</a>
           <a class="btn secondary" href="index.html">Retour au menu principal</a>
         </div>
       </section>
 
-      <aside class="panel">
-        <div class="panel-title">
-          <strong>Carte d’identité</strong>
+      <section class="game">
+        <div class="game-title">
+          <strong>Choisissez le bon profil</strong>
           <span>○△□</span>
         </div>
 
-        <ul class="info">
-          <li>
-            <strong>Entreprise</strong>
-            <span>STOOM Clermont-Ferrand</span>
-          </li>
+        <div class="instruction">
+          Trois clients entrent en boutique. Qui accompagnez-vous en priorité ?
+        </div>
 
-          <li>
-            <strong>Adresse</strong>
-            <span>109 avenue Édouard Michelin, 63100 Clermont-Ferrand</span>
-          </li>
+        <div class="clients">
+          <div class="client" data-answer="bad">
+            <div>
+              <div class="silhouette"><div class="scan-line"></div></div>
+              <div class="client-id">Client 01</div>
+              <div class="quote">“Je veux juste le moins cher.”</div>
+            </div>
+            <div class="hint">Signal détecté : achat rapide, faible besoin d’explication.</div>
+          </div>
 
-          <li>
-            <strong>Univers</strong>
-            <span>Commerce spécialisé, relation client, conseil et accompagnement.</span>
-          </li>
+          <div class="client" data-answer="good">
+            <div>
+              <div class="silhouette"><div class="scan-line"></div></div>
+              <div class="client-id">Client 02</div>
+              <div class="quote">“J’ai essayé d’arrêter plusieurs fois… je suis un peu perdu.”</div>
+            </div>
+            <div class="hint">Signal détecté : besoin d’écoute, pédagogie et accompagnement.</div>
+          </div>
 
-          <li>
-            <strong>Mission alternant</strong>
-            <span>Apprendre le métier en situation réelle, au contact des clients et de l’équipe.</span>
-          </li>
-        </ul>
-      </aside>
+          <div class="client" data-answer="bad">
+            <div>
+              <div class="silhouette"><div class="scan-line"></div></div>
+              <div class="client-id">Client 03</div>
+              <div class="quote">“Je connais déjà mon produit.”</div>
+            </div>
+            <div class="hint">Signal détecté : client autonome, besoin plus simple.</div>
+          </div>
+        </div>
+
+        <div class="result" id="result">
+          <strong id="resultTitle">Accès autorisé</strong>
+          <span id="resultText">Bonne décision. Chez STOOM, le conseil passe avant la vente.</span>
+        </div>
+
+        <div class="actions">
+          <a class="btn locked" id="nextBtn" href="competences.html">Épreuve suivante →</a>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -376,5 +530,34 @@
       <span>Épreuve 01 / 05</span>
     </footer>
   </div>
+
+  <script>
+    const clients = document.querySelectorAll('.client');
+    const result = document.getElementById('result');
+    const resultTitle = document.getElementById('resultTitle');
+    const resultText = document.getElementById('resultText');
+    const nextBtn = document.getElementById('nextBtn');
+
+    clients.forEach(client => {
+      client.addEventListener('click', () => {
+        clients.forEach(c => c.classList.remove('selected', 'good', 'bad'));
+
+        const isGood = client.dataset.answer === 'good';
+        client.classList.add('selected', isGood ? 'good' : 'bad');
+
+        result.style.display = 'block';
+
+        if (isGood) {
+          resultTitle.textContent = 'Accès autorisé';
+          resultText.textContent = 'Bonne décision. Chez STOOM, le conseil passe avant la vente. Le client perdu a besoin d’être écouté, rassuré et guidé.';
+          nextBtn.classList.remove('locked');
+        } else {
+          resultTitle.textContent = 'Décision incomplète';
+          resultText.textContent = 'Pas tout à fait. Chez STOOM, la priorité est d’identifier la personne qui a besoin d’un véritable accompagnement.';
+          nextBtn.classList.add('locked');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
