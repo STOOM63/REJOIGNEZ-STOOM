@@ -14,12 +14,14 @@
       font-family: Arial, Helvetica, sans-serif;
       background: #050506;
       color: #f4eee8;
+      overflow-x: hidden;
     }
 
     body {
       min-height: 100vh;
       background-image:
-        linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.74) 42%, rgba(0,0,0,0.40) 100%),
+        radial-gradient(circle at 70% 20%, rgba(231,53,104,0.18), transparent 30%),
+        linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.78) 42%, rgba(0,0,0,0.45) 100%),
         url("mur.png");
       background-size: cover;
       background-position: center;
@@ -27,7 +29,18 @@
       background-attachment: fixed;
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .page {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
       padding: 34px 6vw;
       display: flex;
@@ -38,7 +51,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 70px;
+      margin-bottom: 60px;
     }
 
     .logo {
@@ -67,14 +80,12 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       background: rgba(0,0,0,0.45);
+      box-shadow: 0 0 22px rgba(231,53,104,0.18);
     }
 
-    main {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 0.82fr 1.18fr;
-      gap: 70px;
-      align-items: center;
+    .hero {
+      max-width: 940px;
+      margin-bottom: 58px;
     }
 
     .kicker {
@@ -97,39 +108,32 @@
 
     h1 span { color: #e73568; }
 
-    p {
-      max-width: 610px;
+    .hero p {
+      max-width: 760px;
       color: rgba(244,238,232,0.78);
       font-size: 20px;
-      line-height: 1.55;
+      line-height: 1.6;
       margin-bottom: 22px;
     }
 
-    .symbols {
-      color: #ff6f9d;
-      font-size: 32px;
-      letter-spacing: 12px;
-      margin-top: 26px;
-      text-shadow: 0 0 25px rgba(231,53,104,0.75);
-    }
-
-    .grid {
+    .skills {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
+      margin-bottom: 54px;
     }
 
     .skill {
       min-height: 185px;
-      border: 1px solid rgba(231,53,104,0.45);
-      background: rgba(0,0,0,0.62);
+      border: 1px solid rgba(231,53,104,0.42);
+      background: rgba(0,0,0,0.58);
       padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       backdrop-filter: blur(8px);
       box-shadow: 0 24px 65px rgba(0,0,0,0.35);
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: 0.22s ease;
     }
 
     .skill:hover {
@@ -164,8 +168,158 @@
       line-height: 1.45;
     }
 
+    .game-zone {
+      border: 1px solid rgba(231,53,104,0.45);
+      background: rgba(0,0,0,0.70);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 35px 90px rgba(0,0,0,0.75);
+      overflow: hidden;
+    }
+
+    .game-header {
+      padding: 28px 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .game-header strong {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 14px;
+    }
+
+    .game-header span {
+      color: #ff6f9d;
+      letter-spacing: 6px;
+      font-size: 20px;
+      text-shadow: 0 0 22px rgba(231,53,104,0.8);
+    }
+
+    .game-intro {
+      padding: 24px 30px 0 30px;
+      color: rgba(244,238,232,0.78);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .timer-box {
+      margin: 24px 30px 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      border: 1px solid rgba(231,53,104,0.35);
+      background: rgba(255,255,255,0.03);
+      padding: 18px;
+    }
+
+    .timer {
+      color: #ff6f9d;
+      font-size: 34px;
+      font-weight: 900;
+      text-shadow: 0 0 24px rgba(231,53,104,0.8);
+    }
+
+    .score {
+      color: rgba(244,238,232,0.76);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+    }
+
+    .targets {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 30px;
+    }
+
+    .target {
+      min-height: 130px;
+      border: 1px solid rgba(231,53,104,0.32);
+      background: rgba(255,255,255,0.035);
+      color: #fff;
+      padding: 20px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 900;
+      font-size: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .target::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: linear-gradient(120deg, transparent, rgba(255,111,157,0.16), transparent);
+      transform: translateX(-80%);
+      transition: 0.35s ease;
+    }
+
+    .target:hover::before { transform: translateX(80%); }
+
+    .target:hover {
+      transform: translateY(-7px);
+      border-color: #ff6f9d;
+      box-shadow: 0 0 34px rgba(231,53,104,0.24);
+    }
+
+    .target.good {
+      border-color: #7CFFB2;
+      box-shadow: 0 0 34px rgba(124,255,178,0.24);
+    }
+
+    .target.bad {
+      border-color: #ff3b3b;
+      opacity: 0.45;
+      filter: grayscale(1);
+    }
+
+    .target.hidden {
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .result {
+      display: none;
+      margin: 0 30px 30px 30px;
+      border: 1px solid rgba(231,53,104,0.4);
+      background: rgba(0,0,0,0.58);
+      padding: 24px;
+      animation: fade 0.3s ease;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result strong {
+      display: block;
+      color: #ff6f9d;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .result span {
+      display: block;
+      color: rgba(244,238,232,0.78);
+      line-height: 1.6;
+    }
+
     .actions {
-      margin-top: 34px;
+      padding: 0 30px 30px 30px;
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
@@ -175,7 +329,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 54px;
+      min-height: 56px;
       padding: 0 28px;
       color: #fff;
       text-decoration: none;
@@ -183,22 +337,29 @@
       letter-spacing: 2px;
       font-size: 13px;
       font-weight: 900;
-      border: 1px solid rgba(231,53,104,0.5);
-      background: linear-gradient(135deg, #e73568, #a90f3b);
-      box-shadow: 0 0 35px rgba(231,53,104,0.36);
       border-radius: 4px;
+      border: 1px solid rgba(231,53,104,0.5);
+      transition: 0.2s ease;
     }
 
-    .btn.secondary {
-      background: rgba(0,0,0,0.5);
-      box-shadow: none;
+    .btn.primary {
+      background: linear-gradient(135deg,#e73568,#a90f3b);
+      box-shadow: 0 0 35px rgba(231,53,104,0.36);
+    }
+
+    .btn.secondary { background: rgba(0,0,0,0.5); }
+
+    .btn.locked {
+      opacity: 0.35;
+      pointer-events: none;
+      filter: grayscale(1);
     }
 
     footer {
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      margin-top: 60px;
+      margin-top: 50px;
       color: rgba(244,238,232,0.48);
       font-size: 12px;
       letter-spacing: 2px;
@@ -206,19 +367,23 @@
     }
 
     @media (max-width: 1050px) {
-      main { grid-template-columns: 1fr; gap: 40px; }
-      .grid { grid-template-columns: repeat(2, 1fr); }
+      .skills { grid-template-columns: repeat(2, 1fr); }
+      .targets { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 700px) {
       body { background-attachment: scroll; }
       .page { padding: 24px 20px; }
-      header { margin-bottom: 54px; }
+      header { margin-bottom: 44px; }
       .badge { display: none; }
-      h1 { letter-spacing: -2px; }
-      p { font-size: 17px; }
-      .grid { grid-template-columns: 1fr; }
-      .skill { min-height: auto; }
+      h1 { font-size: clamp(52px,16vw,84px); letter-spacing: -2px; }
+      .hero p { font-size: 17px; }
+      .skills, .targets { grid-template-columns: 1fr; }
+      .targets { padding: 20px; }
+      .timer-box { margin: 20px 20px 0 20px; flex-direction: column; align-items: flex-start; }
+      .actions { flex-direction: column; padding: 0 20px 20px 20px; }
+      .btn { width: 100%; }
+      .result { margin: 0 20px 20px 20px; }
       footer { flex-direction: column; gap: 8px; }
     }
   </style>
@@ -231,72 +396,138 @@
       <div class="badge">Épreuve 02 · Vos compétences</div>
     </header>
 
-    <main>
-      <section>
-        <div class="kicker">Épreuve 02</div>
-        <h1>Ce que vous <span>apprendrez</span></h1>
+    <section class="hero">
+      <div class="kicker">Épreuve 02</div>
+      <h1>Ce que vous <span>apprendrez</span></h1>
 
-        <p>
-          Chez STOOM, l’alternance se vit sur le terrain : vous apprenez un métier concret,
-          au contact des clients, des produits et de la réalité d’une boutique spécialisée.
-        </p>
+      <p>
+        Chez STOOM, l’alternance se vit sur le terrain : vous apprenez un métier concret,
+        au contact des clients, des produits et de la réalité d’une boutique spécialisée.
+      </p>
 
-        <p>
-          Chaque compétence développée vous servira dans le commerce, la relation client
-          et votre parcours professionnel.
-        </p>
+      <p>
+        Chaque compétence développée vous servira dans le commerce, la relation client
+        et votre parcours professionnel.
+      </p>
+    </section>
 
-        <div class="symbols">○ △ □</div>
+    <section class="skills">
+      <div class="skill"><div class="icon">◎</div><strong>Vente & conseil client</strong><span>Comprendre les besoins, poser les bonnes questions et proposer une solution adaptée.</span></div>
+      <div class="skill"><div class="icon">▣</div><strong>Gestion boutique</strong><span>Participer au réassort, à la mise en rayon, à l’organisation et au suivi quotidien.</span></div>
+      <div class="skill"><div class="icon">◌</div><strong>Relation client</strong><span>Développer l’écoute, la pédagogie, le suivi client et la fidélisation.</span></div>
+      <div class="skill"><div class="icon">△</div><strong>Connaissance produits</strong><span>Découvrir les matériels, les e-liquides, les usages et les attentes clients.</span></div>
+      <div class="skill"><div class="icon">◇</div><strong>Communication</strong><span>Comprendre l’image boutique, les opérations commerciales et la mise en avant produits.</span></div>
+      <div class="skill"><div class="icon">▰</div><strong>Expérience terrain</strong><span>Apprendre en situation réelle, avec un accompagnement progressif et concret.</span></div>
+    </section>
 
-        <div class="actions">
-          <a class="btn" href="profil.html">Épreuve suivante →</a>
-          <a class="btn secondary" href="qui-sommes-nous.html">Retour</a>
-        </div>
-      </section>
+    <section class="game-zone">
+      <div class="game-header">
+        <strong>Épreuve 02 — Réflexes STOOM</strong>
+        <span>○ △ □</span>
+      </div>
 
-      <section class="grid">
-        <div class="skill">
-          <div class="icon">◎</div>
-          <strong>Vente & conseil client</strong>
-          <span>Comprendre les besoins, poser les bonnes questions et proposer une solution adaptée.</span>
-        </div>
+      <div class="game-intro">
+        Cliquez uniquement sur les compétences essentielles chez STOOM avant la fin du chrono.
+      </div>
 
-        <div class="skill">
-          <div class="icon">▣</div>
-          <strong>Gestion boutique</strong>
-          <span>Participer au réassort, à la mise en rayon, à l’organisation et au suivi quotidien.</span>
-        </div>
+      <div class="timer-box">
+        <div class="timer" id="timer">20</div>
+        <div class="score" id="score">Score : 0 / 5</div>
+      </div>
 
-        <div class="skill">
-          <div class="icon">◌</div>
-          <strong>Relation client</strong>
-          <span>Développer l’écoute, la pédagogie, le suivi client et la fidélisation.</span>
-        </div>
+      <div class="targets">
+        <div class="target" data-good="true">Écoute client</div>
+        <div class="target" data-good="false">Vendre vite</div>
+        <div class="target" data-good="true">Conseil personnalisé</div>
+        <div class="target" data-good="true">Esprit d’équipe</div>
+        <div class="target" data-good="false">Ignorer les questions</div>
+        <div class="target" data-good="true">Organisation</div>
+        <div class="target" data-good="false">Improviser sans apprendre</div>
+        <div class="target" data-good="true">Curiosité</div>
+        <div class="target" data-good="false">Forcer la vente</div>
+      </div>
 
-        <div class="skill">
-          <div class="icon">△</div>
-          <strong>Connaissance produits</strong>
-          <span>Découvrir les matériels, les e-liquides, les usages et les attentes clients.</span>
-        </div>
+      <div class="result" id="result">
+        <strong id="resultTitle">Mission validée</strong>
+        <span id="resultText">Vous avez identifié les compétences essentielles.</span>
+      </div>
 
-        <div class="skill">
-          <div class="icon">◇</div>
-          <strong>Communication</strong>
-          <span>Comprendre l’image boutique, les opérations commerciales et la mise en avant produits.</span>
-        </div>
-
-        <div class="skill">
-          <div class="icon">▰</div>
-          <strong>Expérience terrain</strong>
-          <span>Apprendre en situation réelle, avec un accompagnement progressif et concret.</span>
-        </div>
-      </section>
-    </main>
+      <div class="actions">
+        <a class="btn secondary" href="qui-sommes-nous.html">Retour</a>
+        <a class="btn primary locked" id="nextBtn" href="profil.html">Épreuve suivante →</a>
+      </div>
+    </section>
 
     <footer>
       <span>STOOM Clermont-Ferrand</span>
       <span>Épreuve 02 / 05</span>
     </footer>
   </div>
+
+  <script>
+    const targets = document.querySelectorAll('.target');
+    const timerEl = document.getElementById('timer');
+    const scoreEl = document.getElementById('score');
+    const result = document.getElementById('result');
+    const resultTitle = document.getElementById('resultTitle');
+    const resultText = document.getElementById('resultText');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let score = 0;
+    let time = 20;
+    let started = false;
+    let finished = false;
+
+    function startTimer() {
+      if (started) return;
+      started = true;
+      const interval = setInterval(() => {
+        if (finished) {
+          clearInterval(interval);
+          return;
+        }
+        time--;
+        timerEl.textContent = time;
+        if (time <= 0) {
+          clearInterval(interval);
+          endGame(false);
+        }
+      }, 1000);
+    }
+
+    function endGame(success) {
+      finished = true;
+      result.style.display = 'block';
+      if (success) {
+        resultTitle.textContent = 'Mission validée';
+        resultText.textContent = 'Très bon réflexe. Vous avez identifié les compétences qui comptent chez STOOM : écoute, conseil, équipe, organisation et curiosité.';
+        nextBtn.classList.remove('locked');
+      } else {
+        resultTitle.textContent = 'Mission incomplète';
+        resultText.textContent = 'Il fallait identifier les 5 compétences essentielles. Relancez la page pour retenter l’épreuve.';
+        nextBtn.classList.add('locked');
+      }
+    }
+
+    targets.forEach(target => {
+      target.addEventListener('click', () => {
+        if (finished || target.classList.contains('hidden')) return;
+        startTimer();
+
+        const isGood = target.dataset.good === 'true';
+
+        if (isGood) {
+          target.classList.add('good');
+          target.classList.add('hidden');
+          score++;
+          scoreEl.textContent = 'Score : ' + score + ' / 5';
+          if (score === 5) endGame(true);
+        } else {
+          target.classList.add('bad');
+          setTimeout(() => target.classList.add('hidden'), 400);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
