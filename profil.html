@@ -14,12 +14,14 @@
       font-family: Arial, Helvetica, sans-serif;
       background: #050506;
       color: #f4eee8;
+      overflow-x: hidden;
     }
 
     body {
       min-height: 100vh;
       background-image:
-        linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.76) 45%, rgba(0,0,0,0.40) 100%),
+        radial-gradient(circle at 70% 25%, rgba(231,53,104,0.22), transparent 30%),
+        linear-gradient(90deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.78) 45%, rgba(0,0,0,0.45) 100%),
         url("bureau.png");
       background-size: cover;
       background-position: center;
@@ -27,7 +29,20 @@
       background-attachment: fixed;
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 80px),
+        linear-gradient(120deg, transparent 0%, rgba(231,53,104,0.08) 48%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .page {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
       padding: 34px 6vw;
       display: flex;
@@ -38,7 +53,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 70px;
+      margin-bottom: 54px;
     }
 
     .logo {
@@ -67,14 +82,12 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       background: rgba(0,0,0,0.45);
+      box-shadow: 0 0 22px rgba(231,53,104,0.18);
     }
 
-    main {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 70px;
-      align-items: center;
+    .hero {
+      max-width: 920px;
+      margin-bottom: 46px;
     }
 
     .kicker {
@@ -87,7 +100,7 @@
     }
 
     h1 {
-      font-size: clamp(52px, 7.5vw, 112px);
+      font-size: clamp(54px, 7.8vw, 112px);
       line-height: 0.9;
       text-transform: uppercase;
       letter-spacing: -3px;
@@ -97,85 +110,292 @@
 
     h1 span { color: #e73568; }
 
-    p {
-      max-width: 620px;
+    .hero p {
+      max-width: 740px;
       color: rgba(244,238,232,0.78);
       font-size: 20px;
-      line-height: 1.55;
-      margin-bottom: 22px;
+      line-height: 1.6;
+      margin-bottom: 18px;
     }
 
-    .symbols {
-      color: #ff6f9d;
-      font-size: 32px;
-      letter-spacing: 12px;
-      margin-top: 26px;
-      text-shadow: 0 0 25px rgba(231,53,104,0.75);
-    }
-
-    .panel {
+    .game-zone {
       border: 1px solid rgba(231,53,104,0.45);
-      background: rgba(0,0,0,0.66);
-      padding: 34px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+      background: rgba(0,0,0,0.70);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 35px 90px rgba(0,0,0,0.75);
+      overflow: hidden;
     }
 
-    .panel-title {
+    .game-header {
+      padding: 28px 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 18px;
-      margin-bottom: 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
     }
 
-    .panel-title strong {
+    .game-header strong {
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       font-size: 14px;
     }
 
-    .panel-title span {
+    .game-header span {
       color: #ff6f9d;
+      letter-spacing: 6px;
       font-size: 20px;
-      letter-spacing: 5px;
+      text-shadow: 0 0 22px rgba(231,53,104,0.8);
+    }
+
+    .game-intro {
+      padding: 24px 30px 0 30px;
+      color: rgba(244,238,232,0.78);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .arena {
+      display: grid;
+      grid-template-columns: 1fr 420px 1fr;
+      gap: 28px;
+      align-items: center;
+      padding: 34px 30px;
     }
 
     .qualities {
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
 
     .quality {
-      border: 1px solid rgba(231,53,104,0.26);
-      background: rgba(255,255,255,0.02);
-      padding: 20px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      border: 1px solid rgba(231,53,104,0.35);
+      background: rgba(255,255,255,0.035);
+      color: #fff;
+      min-height: 72px;
+      padding: 16px 18px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 900;
+      transition: 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .quality:hover {
-      transform: translateY(-4px);
+      transform: translateX(8px);
       border-color: #ff6f9d;
+      background: rgba(231,53,104,0.10);
+      box-shadow: 0 0 28px rgba(231,53,104,0.24);
     }
 
-    .quality strong {
+    .quality::after {
+      content: " verrouillé";
+      color: rgba(244,238,232,0.36);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+    }
+
+    .quality.done {
+      border-color: #7CFFB2;
+      box-shadow: 0 0 30px rgba(124,255,178,0.24);
+      background: rgba(124,255,178,0.07);
+      pointer-events: none;
+    }
+
+    .quality.done::after {
+      content: " déverrouillé";
+      color: #7CFFB2;
+    }
+
+    .quality.error {
+      border-color: #ff3b3b;
+      box-shadow: 0 0 30px rgba(255,59,59,0.22);
+      animation: shake 0.25s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    .door-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .door {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 0.74;
+      border: 1px solid rgba(231,53,104,0.55);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.04) 0%, transparent 14%, transparent 86%, rgba(255,255,255,0.04) 100%),
+        linear-gradient(180deg, rgba(231,53,104,0.16), rgba(0,0,0,0.85));
+      box-shadow:
+        inset 0 0 55px rgba(231,53,104,0.18),
+        0 0 55px rgba(231,53,104,0.22),
+        0 35px 80px rgba(0,0,0,0.72);
+      overflow: hidden;
+    }
+
+    .door::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 49%, rgba(255,111,157,0.65) 50%, transparent 51%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 72px);
+      opacity: 0.65;
+      transition: 0.4s ease;
+    }
+
+    .door::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 100px;
+      top: -120px;
+      background: linear-gradient(to bottom, transparent, rgba(255,111,157,0.32), transparent);
+      animation: scan 3s linear infinite;
+    }
+
+    @keyframes scan {
+      0% { top: -120px; }
+      100% { top: 100%; }
+    }
+
+    .door.open::before {
+      opacity: 1;
+      filter: brightness(1.8);
+    }
+
+    .door-panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      background: rgba(0,0,0,0.45);
+      transition: 0.6s cubic-bezier(.2,.9,.2,1);
+      z-index: 2;
+    }
+
+    .door-left {
+      left: 0;
+      border-right: 1px solid rgba(255,111,157,0.65);
+    }
+
+    .door-right {
+      right: 0;
+      border-left: 1px solid rgba(255,111,157,0.65);
+    }
+
+    .door.open .door-left { transform: translateX(-72%); }
+    .door.open .door-right { transform: translateX(72%); }
+
+    .door-core {
+      position: absolute;
+      inset: 28px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .door-core .symbol {
+      color: #ff6f9d;
+      font-size: 46px;
+      letter-spacing: 12px;
+      text-shadow: 0 0 32px rgba(231,53,104,0.95);
+      margin-bottom: 22px;
+    }
+
+    .door-core strong {
       display: block;
       color: #fff;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 14px;
-      margin-bottom: 10px;
+      letter-spacing: 3px;
+      font-size: 18px;
+      margin-bottom: 12px;
     }
 
-    .quality span {
-      color: rgba(244,238,232,0.72);
+    .door-core span {
+      color: rgba(244,238,232,0.68);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .locks {
+      display: grid;
+      gap: 14px;
+    }
+
+    .lock {
+      border: 1px solid rgba(231,53,104,0.28);
+      background: rgba(0,0,0,0.46);
+      padding: 16px;
+      color: rgba(244,238,232,0.48);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lock::after {
+      content: "●";
+      color: rgba(244,238,232,0.26);
+    }
+
+    .lock.active {
+      border-color: #7CFFB2;
+      color: #7CFFB2;
+      box-shadow: 0 0 22px rgba(124,255,178,0.18);
+    }
+
+    .lock.active::after {
+      color: #7CFFB2;
+      text-shadow: 0 0 18px rgba(124,255,178,0.7);
+    }
+
+    .message {
+      display: none;
+      margin: 0 30px 30px 30px;
+      border: 1px solid rgba(231,53,104,0.4);
+      background: rgba(0,0,0,0.58);
+      padding: 24px;
+      animation: fade 0.3s ease;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message strong {
+      display: block;
+      color: #ff6f9d;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
       font-size: 15px;
-      line-height: 1.5;
+    }
+
+    .message span {
+      display: block;
+      color: rgba(244,238,232,0.78);
+      line-height: 1.6;
     }
 
     .actions {
-      margin-top: 34px;
+      padding: 0 30px 30px 30px;
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
@@ -185,7 +405,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 54px;
+      min-height: 56px;
       padding: 0 28px;
       color: #fff;
       text-decoration: none;
@@ -193,43 +413,59 @@
       letter-spacing: 2px;
       font-size: 13px;
       font-weight: 900;
-      border: 1px solid rgba(231,53,104,0.5);
-      background: linear-gradient(135deg, #e73568, #a90f3b);
-      box-shadow: 0 0 35px rgba(231,53,104,0.36);
       border-radius: 4px;
+      border: 1px solid rgba(231,53,104,0.5);
+      transition: 0.2s ease;
     }
 
-    .btn.secondary {
-      background: rgba(0,0,0,0.5);
-      box-shadow: none;
+    .btn.primary {
+      background: linear-gradient(135deg,#e73568,#a90f3b);
+      box-shadow: 0 0 35px rgba(231,53,104,0.36);
+    }
+
+    .btn.secondary { background: rgba(0,0,0,0.5); }
+
+    .btn.locked {
+      opacity: 0.35;
+      pointer-events: none;
+      filter: grayscale(1);
     }
 
     footer {
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      margin-top: 60px;
+      margin-top: 50px;
       color: rgba(244,238,232,0.48);
       font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
-    @media (max-width: 950px) {
-      main {
+    @media (max-width: 1100px) {
+      .arena {
         grid-template-columns: 1fr;
-        gap: 40px;
+      }
+
+      .door {
+        max-width: 360px;
       }
     }
 
     @media (max-width: 700px) {
       body { background-attachment: scroll; }
       .page { padding: 24px 20px; }
-      header { margin-bottom: 54px; }
+      header { margin-bottom: 44px; }
       .badge { display: none; }
-      h1 { letter-spacing: -2px; }
-      p { font-size: 17px; }
-      .panel { padding: 24px; }
+      h1 { font-size: clamp(52px,16vw,84px); letter-spacing: -2px; }
+      .hero p { font-size: 17px; }
+      .game-header { padding: 24px 20px; }
+      .game-intro { padding: 20px 20px 0 20px; }
+      .arena { padding: 24px 20px; }
+      .door { max-width: 310px; }
+      .actions { flex-direction: column; padding: 0 20px 20px 20px; }
+      .btn { width: 100%; }
+      .message { margin: 0 20px 20px 20px; }
       footer { flex-direction: column; gap: 8px; }
     }
   </style>
@@ -242,70 +478,133 @@
       <div class="badge">Épreuve 03 · Le profil recherché</div>
     </header>
 
-    <main>
-      <section>
-        <div class="kicker">Épreuve 03</div>
+    <section class="hero">
+      <div class="kicker">Épreuve 03</div>
 
-        <h1>Le profil <span>recherché</span></h1>
+      <h1>Le profil <span>recherché</span></h1>
 
-        <p>
-          <strong>Nous ne recherchons pas simplement un CV.</strong><br>
-          <br>
-          Nous recherchons une personnalité capable d’apprendre,
-          d’évoluer et de représenter STOOM avec sérieux.
-        </p>
+      <p>
+        <strong>Nous ne recherchons pas simplement un CV.</strong><br><br>
+        Nous recherchons une personnalité capable d’apprendre, d’évoluer et de représenter STOOM avec sérieux.
+      </p>
 
-        <p>
-          Motivation, relationnel et curiosité feront toujours la différence.
-        </p>
+      <p>
+        Motivation, relationnel et curiosité feront toujours la différence.
+      </p>
+    </section>
 
-        <div class="symbols">○ △ □</div>
+    <section class="game-zone">
+      <div class="game-header">
+        <strong>Épreuve 03 — La porte du profil</strong>
+        <span>○ △ □</span>
+      </div>
 
-        <div class="actions">
-          <a class="btn" href="pourquoi-stoom.html">Épreuve suivante →</a>
-          <a class="btn secondary" href="competences.html">Retour</a>
-        </div>
-      </section>
+      <div class="game-intro">
+        Déverrouillez la porte du profil STOOM. Cliquez les qualités dans le bon ordre :
+        écoute, curiosité, sérieux, équipe, motivation.
+      </div>
 
-      <aside class="panel">
-        <div class="panel-title">
-          <strong>Qualités recherchées</strong>
-          <span>○△□</span>
-        </div>
-
+      <div class="arena">
         <div class="qualities">
-          <div class="quality">
-            <strong>Relationnel</strong>
-            <span>Savoir écouter, échanger et créer une relation de confiance avec les clients.</span>
-          </div>
+          <div class="quality" data-order="4">Motivation</div>
+          <div class="quality" data-order="2">Curiosité</div>
+          <div class="quality" data-order="0">Écoute</div>
+          <div class="quality" data-order="3">Esprit d’équipe</div>
+          <div class="quality" data-order="1">Sérieux</div>
+        </div>
 
-          <div class="quality">
-            <strong>Curiosité</strong>
-            <span>Avoir envie d’apprendre un métier technique et de progresser rapidement.</span>
-          </div>
+        <div class="door-wrap">
+          <div class="door" id="door">
+            <div class="door-panel door-left"></div>
+            <div class="door-panel door-right"></div>
 
-          <div class="quality">
-            <strong>Sérieux</strong>
-            <span>Être impliqué, ponctuel et capable de travailler dans un cadre professionnel.</span>
-          </div>
-
-          <div class="quality">
-            <strong>Esprit d’équipe</strong>
-            <span>Participer à une ambiance saine et travailler avec les autres au quotidien.</span>
-          </div>
-
-          <div class="quality">
-            <strong>Motivation</strong>
-            <span>L’envie d’avancer et de se dépasser compte plus que l’expérience initiale.</span>
+            <div class="door-core">
+              <div>
+                <div class="symbol">○ △ □</div>
+                <strong id="doorStatus">Profil verrouillé</strong>
+                <span id="doorText">Activez les 5 qualités pour ouvrir l’accès.</span>
+              </div>
+            </div>
           </div>
         </div>
-      </aside>
-    </main>
+
+        <div class="locks">
+          <div class="lock" id="lock0">01 · Écoute</div>
+          <div class="lock" id="lock1">02 · Sérieux</div>
+          <div class="lock" id="lock2">03 · Curiosité</div>
+          <div class="lock" id="lock3">04 · Équipe</div>
+          <div class="lock" id="lock4">05 · Motivation</div>
+        </div>
+      </div>
+
+      <div class="message" id="message">
+        <strong id="messageTitle">Profil accepté</strong>
+        <span id="messageText">
+          La porte est ouverte. Vous avez activé les qualités essentielles attendues chez STOOM.
+        </span>
+      </div>
+
+      <div class="actions">
+        <a class="btn secondary" href="competences.html">Retour</a>
+        <a class="btn primary locked" id="nextBtn" href="pourquoi-stoom.html">Épreuve suivante →</a>
+      </div>
+    </section>
 
     <footer>
       <span>STOOM Clermont-Ferrand</span>
       <span>Épreuve 03 / 05</span>
     </footer>
   </div>
+
+  <script>
+    const qualities = document.querySelectorAll('.quality');
+    const door = document.getElementById('door');
+    const doorStatus = document.getElementById('doorStatus');
+    const doorText = document.getElementById('doorText');
+    const message = document.getElementById('message');
+    const messageTitle = document.getElementById('messageTitle');
+    const messageText = document.getElementById('messageText');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let step = 0;
+
+    qualities.forEach(quality => {
+      quality.addEventListener('click', () => {
+        const order = Number(quality.dataset.order);
+
+        qualities.forEach(q => q.classList.remove('error'));
+
+        if (order === step) {
+          quality.classList.add('done');
+
+          const lock = document.getElementById('lock' + step);
+          if (lock) lock.classList.add('active');
+
+          step++;
+
+          doorStatus.textContent = 'Verrou ' + step + ' / 5';
+          doorText.textContent = 'Continuez. Le profil est en cours de validation.';
+
+          if (step === 5) {
+            door.classList.add('open');
+            doorStatus.textContent = 'Profil accepté';
+            doorText.textContent = 'Accès autorisé. Vous pouvez passer à l’épreuve suivante.';
+
+            message.style.display = 'block';
+            messageTitle.textContent = 'Profil compatible STOOM';
+            messageText.textContent = 'Vous avez activé les qualités essentielles : écoute, sérieux, curiosité, esprit d’équipe et motivation.';
+
+            nextBtn.classList.remove('locked');
+          }
+        } else {
+          quality.classList.add('error');
+
+          message.style.display = 'block';
+          messageTitle.textContent = 'Mauvais ordre';
+          messageText.textContent = 'La porte reste verrouillée. Indice : un bon profil commence toujours par l’écoute.';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
