@@ -3,535 +3,669 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STOOM | Épreuve 01 - Analyse client</title>
+  <title>STOOM | Qui sommes-nous ?</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #050506;
-      color: #f4eee8;
-      overflow-x: hidden;
+    html,body{
+      width:100%;
+      min-height:100%;
+      font-family:Arial, Helvetica, sans-serif;
+      background:#050506;
+      color:#f4eee8;
+      overflow-x:hidden;
     }
 
-    body {
-      min-height: 100vh;
+    body{
+      min-height:100vh;
       background-image:
-        radial-gradient(circle at 70% 35%, rgba(231,53,104,0.18), transparent 28%),
-        linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.74) 44%, rgba(0,0,0,0.42) 100%),
-        url("couloir.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      radial-gradient(circle at 70% 20%, rgba(231,53,104,0.18), transparent 30%),
+      linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.78) 42%, rgba(0,0,0,0.45) 100%),
+      url("magasin.png");
+
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      background-attachment:fixed;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
       background:
-        repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 72px),
-        linear-gradient(120deg, transparent 0%, rgba(231,53,104,0.08) 48%, transparent 62%);
-      pointer-events: none;
-      z-index: 0;
+      repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.015) 0px,
+      rgba(255,255,255,0.015) 1px,
+      transparent 1px,
+      transparent 80px
+      );
+      pointer-events:none;
+      z-index:0;
     }
 
-    .page {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      padding: 34px 6vw;
-      display: flex;
-      flex-direction: column;
+    .page{
+      position:relative;
+      z-index:1;
+      min-height:100vh;
+      padding:34px 6vw;
+      display:flex;
+      flex-direction:column;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 58px;
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:60px;
     }
 
-    .logo {
-      font-size: 38px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 0.9;
+    .logo{
+      font-size:38px;
+      font-weight:900;
+      letter-spacing:-1px;
+      line-height:0.9;
     }
 
-    .logo span {
-      color: #e73568;
+    .logo span{
+      color:#e73568;
     }
 
-    .logo small {
-      display: block;
-      margin-top: 8px;
-      font-size: 10px;
-      letter-spacing: 4px;
-      color: rgba(244,238,232,0.65);
-      font-weight: 400;
+    .logo small{
+      display:block;
+      margin-top:8px;
+      font-size:10px;
+      letter-spacing:4px;
+      color:rgba(244,238,232,0.65);
+      font-weight:400;
     }
 
-    .badge {
-      border: 1px solid rgba(231,53,104,0.5);
-      padding: 12px 16px;
-      color: #f4eee8;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      background: rgba(0,0,0,0.45);
-      box-shadow: 0 0 22px rgba(231,53,104,0.16);
+    .badge{
+      border:1px solid rgba(231,53,104,0.5);
+      padding:12px 16px;
+      color:#f4eee8;
+      font-size:11px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      background:rgba(0,0,0,0.45);
+      box-shadow:0 0 22px rgba(231,53,104,0.18);
     }
 
-    main {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 54px;
-      align-items: center;
+    .hero{
+      max-width:920px;
+      margin-bottom:70px;
     }
 
-    .kicker {
-      color: #ff6f9d;
-      font-size: 13px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      margin-bottom: 20px;
+    .kicker{
+      color:#ff6f9d;
+      font-size:13px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:5px;
+      margin-bottom:20px;
     }
 
-    h1 {
-      font-size: clamp(52px, 7.5vw, 108px);
-      line-height: 0.9;
-      text-transform: uppercase;
-      letter-spacing: -3px;
-      margin-bottom: 28px;
-      text-shadow: 0 18px 60px rgba(0,0,0,0.9);
+    h1{
+      font-size:clamp(60px,8vw,120px);
+      line-height:0.88;
+      text-transform:uppercase;
+      letter-spacing:-3px;
+      margin-bottom:28px;
+      text-shadow:0 18px 60px rgba(0,0,0,0.9);
     }
 
-    h1 span {
-      color: #e73568;
+    h1 span{
+      color:#e73568;
     }
 
-    p {
-      max-width: 640px;
-      color: rgba(244,238,232,0.78);
-      font-size: 20px;
-      line-height: 1.55;
-      margin-bottom: 22px;
+    .hero p{
+      max-width:760px;
+      color:rgba(244,238,232,0.78);
+      font-size:21px;
+      line-height:1.65;
+      margin-bottom:22px;
     }
 
-    .intro-box {
-      border-left: 3px solid #e73568;
-      background: rgba(0,0,0,0.42);
-      padding: 18px 20px;
-      max-width: 650px;
-      margin-top: 28px;
-      color: rgba(244,238,232,0.74);
-      line-height: 1.55;
-      box-shadow: 0 0 24px rgba(231,53,104,0.10);
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-top:34px;
     }
 
-    .game {
-      position: relative;
-      border: 1px solid rgba(231,53,104,0.48);
-      background: rgba(0,0,0,0.68);
-      backdrop-filter: blur(9px);
-      box-shadow: 0 35px 90px rgba(0,0,0,0.68);
-      padding: 30px;
-      overflow: hidden;
+    .card{
+      border:1px solid rgba(231,53,104,0.35);
+      background:rgba(0,0,0,0.52);
+      padding:22px;
+      backdrop-filter:blur(8px);
+      min-height:150px;
+      transition:0.2s ease;
     }
 
-    .game::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(231,53,104,0.22), transparent 38%);
-      pointer-events: none;
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:#ff6f9d;
+      box-shadow:0 0 32px rgba(231,53,104,0.22);
     }
 
-    .game > * {
-      position: relative;
-      z-index: 1;
+    .card strong{
+      display:block;
+      color:#fff;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:14px;
+      margin-bottom:12px;
     }
 
-    .game-title {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: center;
-      padding-bottom: 18px;
-      margin-bottom: 22px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
+    .card span{
+      color:rgba(244,238,232,0.72);
+      font-size:15px;
+      line-height:1.5;
     }
 
-    .game-title strong {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 14px;
+    .game-zone{
+      margin-top:20px;
+      border:1px solid rgba(231,53,104,0.45);
+      background:rgba(0,0,0,0.68);
+      backdrop-filter:blur(10px);
+      box-shadow:0 35px 90px rgba(0,0,0,0.75);
+      overflow:hidden;
     }
 
-    .game-title span {
-      color: #ff6f9d;
-      letter-spacing: 5px;
-      text-shadow: 0 0 20px rgba(231,53,104,0.75);
+    .game-header{
+      padding:28px 30px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
 
-    .instruction {
-      color: rgba(244,238,232,0.78);
-      font-size: 17px;
-      line-height: 1.5;
-      margin-bottom: 24px;
+    .game-header strong{
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:14px;
     }
 
-    .clients {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
+    .game-header span{
+      color:#ff6f9d;
+      letter-spacing:6px;
+      font-size:20px;
+      text-shadow:0 0 22px rgba(231,53,104,0.8);
     }
 
-    .client {
-      border: 1px solid rgba(231,53,104,0.32);
-      background: rgba(255,255,255,0.035);
-      min-height: 300px;
-      padding: 20px;
-      cursor: pointer;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .game-intro{
+      padding:24px 30px 0 30px;
+      color:rgba(244,238,232,0.78);
+      font-size:18px;
+      line-height:1.6;
     }
 
-    .client:hover {
-      transform: translateY(-8px);
-      border-color: #ff6f9d;
-      background: rgba(231,53,104,0.09);
-      box-shadow: 0 0 36px rgba(231,53,104,0.25);
+    .clients{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      padding:30px;
     }
 
-    .client.selected.good {
-      border-color: #7CFFB2;
-      box-shadow: 0 0 38px rgba(124,255,178,0.25);
+    .client{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(231,53,104,0.30);
+      background:rgba(255,255,255,0.03);
+      min-height:390px;
+      padding:22px;
+      cursor:pointer;
+      transition:0.25s ease;
     }
 
-    .client.selected.bad {
-      border-color: #ff3b3b;
-      box-shadow: 0 0 38px rgba(255,59,59,0.22);
-      opacity: 0.72;
+    .client:hover{
+      transform:translateY(-10px) scale(1.02);
+      border-color:#ff6f9d;
+      box-shadow:0 0 42px rgba(231,53,104,0.28);
+      background:rgba(231,53,104,0.08);
     }
 
-    .silhouette {
-      height: 130px;
-      position: relative;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
+    .client.good{
+      border-color:#7CFFB2;
+      box-shadow:0 0 44px rgba(124,255,178,0.28);
     }
 
-    .silhouette::before {
-      content: "";
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, #1e1e25, #050506);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 0 28px rgba(231,53,104,0.20);
-      position: absolute;
-      top: 8px;
+    .client.bad{
+      opacity:0.45;
+      filter:grayscale(1);
+      transform:scale(0.96);
     }
 
-    .silhouette::after {
-      content: "";
-      width: 112px;
-      height: 76px;
-      border-radius: 44px 44px 8px 8px;
-      background: linear-gradient(180deg, #15151b, #050506);
-      border: 1px solid rgba(255,255,255,0.10);
-      position: absolute;
-      bottom: 0;
-      box-shadow: 0 0 34px rgba(231,53,104,0.16);
+    .scan{
+      position:absolute;
+      left:0;
+      top:-40px;
+      width:100%;
+      height:120px;
+      background:linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255,111,157,0.22),
+      transparent
+      );
+      animation:scan 3s linear infinite;
+      pointer-events:none;
     }
 
-    .scan-line {
-      height: 2px;
-      width: 100%;
-      background: #ff6f9d;
-      box-shadow: 0 0 18px #e73568;
-      position: absolute;
-      left: 0;
-      top: 18px;
-      animation: scan 2.4s linear infinite;
-      opacity: 0.75;
-    }
+    @keyframes scan{
+      0%{
+        top:-120px;
+      }
 
-    @keyframes scan {
-      0% { top: 12px; opacity: 0; }
-      12% { opacity: 0.9; }
-      88% { opacity: 0.9; }
-      100% { top: 116px; opacity: 0; }
-    }
-
-    .client-id {
-      color: #ff6f9d;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-      margin-bottom: 12px;
-      font-weight: 900;
-    }
-
-    .quote {
-      color: #fff;
-      font-size: 18px;
-      line-height: 1.35;
-      min-height: 74px;
-      margin-bottom: 16px;
-    }
-
-    .hint {
-      color: rgba(244,238,232,0.56);
-      font-size: 13px;
-      line-height: 1.45;
-      border-top: 1px solid rgba(255,255,255,0.10);
-      padding-top: 14px;
-    }
-
-    .result {
-      display: none;
-      border: 1px solid rgba(231,53,104,0.48);
-      background: rgba(0,0,0,0.58);
-      padding: 22px;
-      margin-top: 8px;
-      animation: reveal 0.35s ease forwards;
-    }
-
-    @keyframes reveal {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .result strong {
-      display: block;
-      color: #ff6f9d;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
-
-    .result span {
-      display: block;
-      color: rgba(244,238,232,0.78);
-      line-height: 1.5;
-    }
-
-    .actions {
-      margin-top: 28px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0 28px;
-      color: #fff;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 13px;
-      font-weight: 900;
-      border: 1px solid rgba(231,53,104,0.5);
-      background: linear-gradient(135deg, #e73568, #a90f3b);
-      box-shadow: 0 0 35px rgba(231,53,104,0.36);
-      border-radius: 4px;
-    }
-
-    .btn.secondary {
-      background: rgba(0,0,0,0.5);
-      box-shadow: none;
-    }
-
-    .btn.locked {
-      opacity: 0.45;
-      pointer-events: none;
-      filter: grayscale(0.7);
-    }
-
-    footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      margin-top: 50px;
-      color: rgba(244,238,232,0.48);
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 1050px) {
-      main {
-        grid-template-columns: 1fr;
-        gap: 42px;
+      100%{
+        top:100%;
       }
     }
 
-    @media (max-width: 760px) {
-      body {
-        background-position: center;
-        background-attachment: scroll;
+    .silhouette{
+      position:relative;
+      height:180px;
+      margin-bottom:24px;
+    }
+
+    .head{
+      width:78px;
+      height:78px;
+      border-radius:50%;
+      background:linear-gradient(180deg,#202028,#060607);
+      border:1px solid rgba(255,255,255,0.10);
+      position:absolute;
+      top:0;
+      left:50%;
+      transform:translateX(-50%);
+      box-shadow:0 0 28px rgba(231,53,104,0.18);
+    }
+
+    .body-shape{
+      width:130px;
+      height:100px;
+      border-radius:55px 55px 10px 10px;
+      background:linear-gradient(180deg,#18181d,#050506);
+      border:1px solid rgba(255,255,255,0.08);
+      position:absolute;
+      bottom:0;
+      left:50%;
+      transform:translateX(-50%);
+      box-shadow:0 0 32px rgba(231,53,104,0.14);
+    }
+
+    .client-id{
+      color:#ff6f9d;
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:16px;
+    }
+
+    .quote{
+      font-size:22px;
+      line-height:1.4;
+      color:#fff;
+      min-height:110px;
+      margin-bottom:24px;
+    }
+
+    .hint{
+      border-top:1px solid rgba(255,255,255,0.08);
+      padding-top:16px;
+      color:rgba(244,238,232,0.58);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .result{
+      display:none;
+      margin:0 30px 30px 30px;
+      border:1px solid rgba(231,53,104,0.4);
+      background:rgba(0,0,0,0.58);
+      padding:24px;
+      animation:fade 0.3s ease;
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+        transform:translateY(10px);
       }
 
-      .page {
-        padding: 24px 20px;
-      }
-
-      header {
-        margin-bottom: 54px;
-      }
-
-      .badge {
-        display: none;
-      }
-
-      h1 {
-        font-size: clamp(52px, 17vw, 88px);
-        letter-spacing: -2px;
-      }
-
-      p {
-        font-size: 17px;
-      }
-
-      .game {
-        padding: 22px;
-      }
-
-      .clients {
-        grid-template-columns: 1fr;
-      }
-
-      .client {
-        min-height: 240px;
-      }
-
-      .actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 8px;
+      to{
+        opacity:1;
+        transform:translateY(0);
       }
     }
+
+    .result strong{
+      display:block;
+      color:#ff6f9d;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      margin-bottom:10px;
+      font-size:15px;
+    }
+
+    .result span{
+      display:block;
+      color:rgba(244,238,232,0.78);
+      line-height:1.6;
+    }
+
+    .actions{
+      padding:0 30px 30px 30px;
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:56px;
+      padding:0 28px;
+      color:#fff;
+      text-decoration:none;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:13px;
+      font-weight:900;
+      border-radius:4px;
+      border:1px solid rgba(231,53,104,0.5);
+      transition:0.2s ease;
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg,#e73568,#a90f3b);
+      box-shadow:0 0 35px rgba(231,53,104,0.36);
+    }
+
+    .btn.secondary{
+      background:rgba(0,0,0,0.5);
+    }
+
+    .btn.locked{
+      opacity:0.35;
+      pointer-events:none;
+      filter:grayscale(1);
+    }
+
+    footer{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      margin-top:50px;
+      color:rgba(244,238,232,0.48);
+      font-size:12px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    @media(max-width:1100px){
+
+      .cards{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .clients{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    @media(max-width:760px){
+
+      body{
+        background-attachment:scroll;
+      }
+
+      .page{
+        padding:24px 20px;
+      }
+
+      header{
+        margin-bottom:44px;
+      }
+
+      .badge{
+        display:none;
+      }
+
+      h1{
+        font-size:clamp(52px,16vw,84px);
+        letter-spacing:-2px;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
+
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .clients{
+        padding:20px;
+      }
+
+      .client{
+        min-height:330px;
+      }
+
+      .actions{
+        flex-direction:column;
+        padding:0 20px 20px 20px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .result{
+        margin:0 20px 20px 20px;
+      }
+
+      footer{
+        flex-direction:column;
+        gap:8px;
+      }
+
+    }
+
   </style>
 </head>
 
 <body>
+
   <div class="page">
+
     <header>
-      <div class="logo">ST<span>OO</span>M<small>CLERMONT-FERRAND</small></div>
-      <div class="badge">Épreuve 01 · Analyse client</div>
+      <div class="logo">
+        ST<span>OO</span>M
+        <small>CLERMONT-FERRAND</small>
+      </div>
+
+      <div class="badge">
+        ÉPREUVE 01 · QUI SOMMES-NOUS ?
+      </div>
     </header>
 
-    <main>
-      <section>
-        <div class="kicker">Épreuve 01</div>
+    <section class="hero">
 
-        <h1>Analyse <span>client</span></h1>
+      <div class="kicker">Présentation</div>
 
-        <p>
-          Chez STOOM, tout commence par l’écoute. Avant de proposer un produit,
-          il faut comprendre la personne, son besoin et sa situation.
-        </p>
+      <h1>
+        Qui sommes-<span>nous ?</span>
+      </h1>
 
-        <p>
-          Votre mission : identifier le client qui a le plus besoin d’un accompagnement personnalisé.
-        </p>
+      <p>
+        STOOM Clermont-Ferrand est une boutique spécialisée dans la cigarette électronique,
+        le conseil client et l’accompagnement personnalisé.
+      </p>
 
-        <div class="intro-box">
-          Observez les profils. Choisissez avec logique, empathie et sens du conseil.
+      <p>
+        Ici, l’objectif n’est pas seulement de vendre :
+        c’est d’écouter, comprendre, expliquer et accompagner chaque client avec sérieux.
+      </p>
+
+      <div class="cards">
+
+        <div class="card">
+          <strong>Conseil</strong>
+          <span>Une approche personnalisée selon chaque client.</span>
         </div>
 
-        <div class="actions">
-          <a class="btn secondary" href="index.html">Retour au menu principal</a>
-        </div>
-      </section>
-
-      <section class="game">
-        <div class="game-title">
-          <strong>Choisissez le bon profil</strong>
-          <span>○△□</span>
+        <div class="card">
+          <strong>Formation</strong>
+          <span>Une vraie montée en compétence sur le terrain.</span>
         </div>
 
-        <div class="instruction">
-          Trois clients entrent en boutique. Qui accompagnez-vous en priorité ?
+        <div class="card">
+          <strong>Humain</strong>
+          <span>Une relation client basée sur l’écoute et la confiance.</span>
         </div>
 
-        <div class="clients">
-          <div class="client" data-answer="bad">
-            <div>
-              <div class="silhouette"><div class="scan-line"></div></div>
-              <div class="client-id">Client 01</div>
-              <div class="quote">“Je veux juste le moins cher.”</div>
-            </div>
-            <div class="hint">Signal détecté : achat rapide, faible besoin d’explication.</div>
+        <div class="card">
+          <strong>Expérience</strong>
+          <span>Un commerce moderne avec des missions concrètes.</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="game-zone">
+
+      <div class="game-header">
+        <strong>Épreuve 01 — Analyse client</strong>
+        <span>○ △ □</span>
+      </div>
+
+      <div class="game-intro">
+        Trois clients entrent dans la boutique.<br>
+        Lequel a le plus besoin d’un véritable accompagnement ?
+      </div>
+
+      <div class="clients">
+
+        <div class="client" data-answer="bad">
+
+          <div class="scan"></div>
+
+          <div class="silhouette">
+            <div class="head"></div>
+            <div class="body-shape"></div>
           </div>
 
-          <div class="client" data-answer="good">
-            <div>
-              <div class="silhouette"><div class="scan-line"></div></div>
-              <div class="client-id">Client 02</div>
-              <div class="quote">“J’ai essayé d’arrêter plusieurs fois… je suis un peu perdu.”</div>
-            </div>
-            <div class="hint">Signal détecté : besoin d’écoute, pédagogie et accompagnement.</div>
+          <div class="client-id">
+            Client 01
           </div>
 
-          <div class="client" data-answer="bad">
-            <div>
-              <div class="silhouette"><div class="scan-line"></div></div>
-              <div class="client-id">Client 03</div>
-              <div class="quote">“Je connais déjà mon produit.”</div>
-            </div>
-            <div class="hint">Signal détecté : client autonome, besoin plus simple.</div>
+          <div class="quote">
+            “Je veux juste le moins cher.”
           </div>
+
+          <div class="hint">
+            Analyse détectée : achat rapide / faible besoin d’accompagnement.
+          </div>
+
         </div>
 
-        <div class="result" id="result">
-          <strong id="resultTitle">Accès autorisé</strong>
-          <span id="resultText">Bonne décision. Chez STOOM, le conseil passe avant la vente.</span>
+        <div class="client" data-answer="good">
+
+          <div class="scan"></div>
+
+          <div class="silhouette">
+            <div class="head"></div>
+            <div class="body-shape"></div>
+          </div>
+
+          <div class="client-id">
+            Client 02
+          </div>
+
+          <div class="quote">
+            “J’ai essayé d’arrêter plusieurs fois…
+            je suis un peu perdu.”
+          </div>
+
+          <div class="hint">
+            Analyse détectée : besoin d’écoute, pédagogie et accompagnement personnalisé.
+          </div>
+
         </div>
 
-        <div class="actions">
-          <a class="btn locked" id="nextBtn" href="competences.html">Épreuve suivante →</a>
+        <div class="client" data-answer="bad">
+
+          <div class="scan"></div>
+
+          <div class="silhouette">
+            <div class="head"></div>
+            <div class="body-shape"></div>
+          </div>
+
+          <div class="client-id">
+            Client 03
+          </div>
+
+          <div class="quote">
+            “Je connais déjà mon matériel.”
+          </div>
+
+          <div class="hint">
+            Analyse détectée : client autonome / besoin technique faible.
+          </div>
+
         </div>
-      </section>
-    </main>
+
+      </div>
+
+      <div class="result" id="result">
+
+        <strong id="resultTitle">
+          Accès autorisé
+        </strong>
+
+        <span id="resultText">
+          Bonne décision.
+        </span>
+
+      </div>
+
+      <div class="actions">
+
+        <a class="btn secondary" href="index.html">
+          Retour au menu principal
+        </a>
+
+        <a class="btn primary locked" id="nextBtn" href="competences.html">
+          Épreuve suivante →
+        </a>
+
+      </div>
+
+    </section>
 
     <footer>
       <span>STOOM Clermont-Ferrand</span>
       <span>Épreuve 01 / 05</span>
     </footer>
+
   </div>
 
   <script>
+
     const clients = document.querySelectorAll('.client');
     const result = document.getElementById('result');
     const resultTitle = document.getElementById('resultTitle');
@@ -539,25 +673,59 @@
     const nextBtn = document.getElementById('nextBtn');
 
     clients.forEach(client => {
+
       client.addEventListener('click', () => {
-        clients.forEach(c => c.classList.remove('selected', 'good', 'bad'));
+
+        clients.forEach(c => {
+          c.classList.remove('good');
+          c.classList.remove('bad');
+        });
 
         const isGood = client.dataset.answer === 'good';
-        client.classList.add('selected', isGood ? 'good' : 'bad');
 
-        result.style.display = 'block';
+        if(isGood){
 
-        if (isGood) {
+          client.classList.add('good');
+
+          clients.forEach(other => {
+
+            if(other !== client){
+              other.classList.add('bad');
+            }
+
+          });
+
+          result.style.display = 'block';
+
           resultTitle.textContent = 'Accès autorisé';
-          resultText.textContent = 'Bonne décision. Chez STOOM, le conseil passe avant la vente. Le client perdu a besoin d’être écouté, rassuré et guidé.';
+
+          resultText.textContent =
+          'Bonne décision. Chez STOOM, le conseil passe avant la vente. Le client perdu a besoin d’écoute, de pédagogie et d’un accompagnement humain.';
+
           nextBtn.classList.remove('locked');
-        } else {
-          resultTitle.textContent = 'Décision incomplète';
-          resultText.textContent = 'Pas tout à fait. Chez STOOM, la priorité est d’identifier la personne qui a besoin d’un véritable accompagnement.';
-          nextBtn.classList.add('locked');
+
         }
+
+        else{
+
+          client.classList.add('bad');
+
+          result.style.display = 'block';
+
+          resultTitle.textContent = 'Analyse incomplète';
+
+          resultText.textContent =
+          'Pas tout à fait. Chez STOOM, nous cherchons d’abord à comprendre la personne qui a besoin d’aide et d’accompagnement.';
+
+          nextBtn.classList.add('locked');
+
+        }
+
       });
+
     });
+
   </script>
+
 </body>
 </html>
